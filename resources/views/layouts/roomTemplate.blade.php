@@ -15,7 +15,9 @@
 </header>
 
 <div>
-    <button id="return-top-button" onclick="location.href='/'">トップへ戻る</button>
+    <form action="/" method="get">
+        <button id="return-top-button" type="submit">トップへ戻る</button>
+    </form>
 </div>
 
 <div class="container">
