@@ -24,14 +24,14 @@ class CreateRoomPost extends FormRequest
     public function rules()
     {
         return [
-            'player_num' => 'not_in: 0'
+            'player_num' => 'integer|between: 5, 20'
         ];
     }
 
     public function messages()
     {
         return [
-            'player_num.not_in' => 'プレイヤー数を選択してください'
+            'player_num.between' => 'プレイヤー数を選択してください'
         ];
     }
 }
