@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Player whereRoleId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Player whereRoomId($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\RoleStatus $roleStatus
  */
 class Player extends Model
 {

@@ -32,5 +32,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\RoomRepositoryInterface::class,
             \App\Repositories\RoomRepository::class
         );
+
+        $this->app->bind(
+            \App\Repositories\RoleStatusRepositoryInterface::class,
+            \App\Repositories\RoleStatusRepository::class
+        );
     }
 }
