@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,3 +12,4 @@ use Illuminate\Http\Request;
 */
 
 Route::post('/punishment', 'VillagerController@punishment');
+Route::post('/raid', 'WerewolfController@raid');
