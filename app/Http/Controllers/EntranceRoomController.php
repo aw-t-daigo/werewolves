@@ -13,11 +13,12 @@ use App\Services\EntranceRoomService;
  */
 class EntranceRoomController extends Controller
 {
-    public function show()
+    public function show($roomId = null)
     {
         $role = RoleMst::all();
         return view('rooms.entrance', [
             'roleMst' => $role,
+            'roomId' => $roomId,
         ]);
     }
 

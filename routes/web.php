@@ -20,7 +20,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::prefix('/')->group(function () {
         Route::get('create', 'CreateRoomController@show');
         Route::post('create', 'CreateRoomController@createRoom');
-        Route::get('enter', 'EntranceRoomController@show');
+        Route::get('enter/{roomId?}', 'EntranceRoomController@show');
         Route::post('enter', 'EntranceRoomController@enter');
         Route::prefix('night/')->group(function () {
             Route::get('1', 'VillagerController@show');
