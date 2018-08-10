@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateRoomPost;
-use App\Models\Room;
-use Illuminate\Http\Request;
+use App\Repositories\RoomRepositoryInterface;
 
 /**
  * 部屋作成画面に関するコントローラ
@@ -27,12 +26,11 @@ class CreateRoomController extends Controller
      * @param CreateRoomPost $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function createRoom(CreateRoomPost $request)
+    public function createRoom(CreateRoomPost $request, RoomRepositoryInterface $room)
     {
-        $room = new Room;
-        $room->fill(['player_num' => $request->player_num])->save();
-        $roomId = $room->room_id;
+        $room->insert($request->player_num);
+        $roomId = $room->getRoomId();
 
-        return redirect('/enter')->with('roomId', $roomId);
+        return redirect('/enter/'.$roomId);
     }
 }

@@ -16,7 +16,7 @@
         @endif
         <select name="player_num" id="select-player-num">
             <option value="0">プレイヤー数</option>
-            @for ($i = 5; $i <= 20; $i++)
+            @for ($i = Config::get('const.minPlayer'); $i <= Config::get('const.maxPlayer'); $i++)
                 <option value="{{$i}}">{{$i}}人</option>
             @endfor
         </select>

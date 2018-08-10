@@ -16,6 +16,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RoleMst whereRoleId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RoleMst whereRoleName($value)
  * @mixin \Eloquent
+ * @property int $need_manip
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RoleMst whereNeedManip($value)
  */
 class RoleMst extends Model
 {

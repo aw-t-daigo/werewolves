@@ -17,10 +17,12 @@ class CreateRoleStatusesTable extends Migration
             $table->increments('id');
             $table->integer('room_id')->unsigned();
             $table->integer('player_id')->unsigned();
+            $table->integer('role_id')->unsigned();
             $table->boolean('is_completed')->default(false);
 
             $table->foreign('room_id')->references('room_id')->on('room')->onDelete('cascade');
             $table->foreign('player_id')->references('player_id')->on('player')->onDelete('cascade');
+            $table->foreign('role_id')->references('role_id')->on('role_mst');
         });
     }
 

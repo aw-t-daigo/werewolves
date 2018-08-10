@@ -27,5 +27,15 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\PlayerRepositoryInterface::class,
             \App\Repositories\PlayerRepository::class
         );
+
+        $this->app->bind(
+            \App\Repositories\RoomRepositoryInterface::class,
+            \App\Repositories\RoomRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\RoleStatusRepositoryInterface::class,
+            \App\Repositories\RoleStatusRepository::class
+        );
     }
 }

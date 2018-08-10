@@ -11,7 +11,7 @@
         @csrf
         <div id="content-room-id">
             <span>部屋ID</span>
-            <input type="text" name="room_id" placeholder="半角数字" value="{{ session('roomId') }}">
+            <input type="text" name="room_id" placeholder="半角数字" value="{{ $roomId }}">
             @if($errors->has('room_id'))
                 <span>
                     @foreach($errors->get('room_id') as $message)
@@ -23,7 +23,7 @@
 
         <div id="content-player-name">
             <span>プレイヤー名</span>
-            <input type="text" name="player_name" placeholder="10文字まで">
+            <input type="text" name="player_name" placeholder="10文字まで" value="{{ old('player_name') }}">
             @if($errors->has('player_name'))
                 <span>
                     @foreach($errors->get('player_name') as $message)
@@ -35,9 +35,9 @@
 
         <div id="content-role">
             <select name="role">
-                <option value="0" selected>役職</option>
+                <option value="0">役職</option>
                 @foreach ($roleMst as $role)
-                    <option value="{{ $role->role_id }}">{{ $role->role_name }}</option>
+                    <option value="{{ $role->role_id }}" @if(old('role') == $role->role_id) selected @endif>{{ $role->role_name }}</option>
                 @endforeach
             </select>
             @if($errors->has('role'))

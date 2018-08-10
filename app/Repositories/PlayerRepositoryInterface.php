@@ -44,4 +44,11 @@ interface PlayerRepositoryInterface
      * @return mixed
      */
     public function getPlayerName($id);
+
+    /**
+     * プレイヤー登録
+     * @param array $param
+     * @return mixed
+     */
+    public function insert(array $param);
 }

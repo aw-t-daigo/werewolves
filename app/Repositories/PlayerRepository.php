@@ -66,4 +66,13 @@ class PlayerRepository implements PlayerRepositoryInterface
     {
         return $this->player->find($id)->player_name;
     }
+
+    /**
+     * @param array $param
+     * @return bool|mixed
+     */
+    public function insert(array $param)
+    {
+        return $this->player->fill($param)->save();
+    }
 }

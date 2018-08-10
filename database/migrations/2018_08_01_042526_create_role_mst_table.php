@@ -16,7 +16,8 @@ class CreateRoleMstTable extends Migration
         Schema::create('role_mst', function (Blueprint $table) {
             $table->increments('role_id');
             $table->string('role_name');
-            $table->boolean('is_wolf');
+            $table->boolean('is_wolf')->default(false);
+            $table->boolean('need_manip')->default(false);
         });
     }
 
