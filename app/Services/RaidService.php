@@ -10,6 +10,7 @@ namespace App\Services;
 
 
 use App\Models\Player;
+use App\Models\Result;
 use App\Models\RoleMst;
 use App\Models\RoleStatus;
 
@@ -22,44 +23,40 @@ class RaidService
     protected $player;
     protected $roleMst;
     protected $roleStatus;
+    protected $result;
 
-    /**
-     * RaidService constructor.
-     * @param Player $player
-     * @param RoleMst $roleMst
-     * @param RoleStatus $roleStatus
-     */
-    public function __construct(Player $player, RoleMst $roleMst, RoleStatus $roleStatus)
+    public function __construct(Player $player, RoleMst $roleMst, RoleStatus $roleStatus, Result $result)
     {
         $this->player = $player;
         $this->roleMst = $roleMst;
         $this->roleStatus = $roleStatus;
+        $this->result = $result;
     }
 
     /**
-     * 襲撃先決定処理
      * @param $roomId
-     * @param $playerId
+     * @param $player_id
+     * @param $target_player
      * @return array
      */
-    public function raid($roomId, $playerId)
+    public function raid($roomId, $player_id, $target_player)
     {
-        if ($this->player->find($playerId)->is_dead) {
+        if ($this->player->find($target_player)->is_dead) {
             return ['success' => false];
         }
 
-        // TODO: 夜操作テーブル（仮）に向かって操作
-//        $saved = $this->player->find($playerId)->fill(['player_id' => $playerId])->save();
+        // resultに向かって操作
+        $this->result->fill([
+            'room_id' => $roomId,
+            'player_id' => $player_id,
+            'target_player' => $target_player
+        ])->save();
 
-//        if ($saved) {
-//            $this->roleStatus->where('room_id', $roomId)
-//                ->where('role_id', 2)
-//                ->fill('is_completed', true)
-//                ->save();
-//        }
+        $this->roleStatus->where('room_id', $roomId)
+            ->where('role_id', 2)
+            ->fill('is_completed', true)
+            ->save();
 
-//        return $saved ?
-//            ['success' => true, 'player_id' => $playerId] :
-//            ['success' => false];
+        return ['success' => true];
     }
 }
