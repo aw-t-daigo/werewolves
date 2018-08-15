@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property int $room_id
  * @property int $role_id
- * @property int $targeted
+ * @property int|null $targeted
  * @property-read \App\Models\Player $player
  * @property-read \App\Models\Room $room
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RoleStatus whereId($value)

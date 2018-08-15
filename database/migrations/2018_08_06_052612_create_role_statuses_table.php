@@ -17,7 +17,7 @@ class CreateRoleStatusesTable extends Migration
             $table->increments('id');
             $table->integer('room_id')->unsigned();
             $table->integer('role_id')->unsigned();
-            $table->integer('targeted')->unsigned();
+            $table->unsignedInteger('targeted')->nullable();
 
             $table->foreign('room_id')->references('room_id')->on('room')->onDelete('cascade');
             $table->foreign('role_id')->references('role_id')->on('role_mst');
