@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateRoleStatusesTable extends Migration
 {
@@ -16,13 +16,12 @@ class CreateRoleStatusesTable extends Migration
         Schema::create('role_statuses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('room_id')->unsigned();
-            $table->integer('player_id')->unsigned();
             $table->integer('role_id')->unsigned();
-            $table->boolean('is_completed')->default(false);
+            $table->unsignedInteger('targeted')->nullable();
 
             $table->foreign('room_id')->references('room_id')->on('room')->onDelete('cascade');
-            $table->foreign('player_id')->references('player_id')->on('player')->onDelete('cascade');
             $table->foreign('role_id')->references('role_id')->on('role_mst');
+            $table->foreign('targeted')->references('player_id')->on('player');
         });
     }
 

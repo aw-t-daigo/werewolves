@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Events\PunishmentRecieved;
 use App\Http\Requests\AbilityRequest;
-use App\Models\Player;
 use App\Services\PunishmentService;
-use Illuminate\Http\Request;
 
 class VillagerController extends Controller
 {
-    public function show(AbilityRequest $request)
+    public function show()
     {
         return view('night.villager');
     }

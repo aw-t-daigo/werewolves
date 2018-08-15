@@ -37,12 +37,10 @@ class EntranceRoomService
 
         // 夜に操作が必要な役職のみ
         if ($this->roleMst->find($roleId)->need_manip) {
-            $this->roleStatus->fill([
+            $this->roleStatus->firstOrCreate([
                 'room_id' => $this->player->room_id,
-                'player_id' => $this->player->player_id,
                 'role_id' => $this->player->role_id,
-                'is_completed' => false,
-            ])->save();
+            ]);
         }
 
         return $this->player;
