@@ -33,16 +33,6 @@ class EntranceRoomService
     public function entranceRoom(array $param)
     {
         $this->player->fill($param)->save();
-        $roleId = $this->player->role_id;
-
-        // 夜に操作が必要な役職のみ
-        if ($this->roleMst->find($roleId)->need_manip) {
-            $this->roleStatus->firstOrCreate([
-                'room_id' => $this->player->room_id,
-                'role_id' => $this->player->role_id,
-            ]);
-        }
-
         return $this->player;
     }
 }
