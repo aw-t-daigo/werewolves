@@ -29,9 +29,4 @@ class RoleStatus extends Model
     {
         return $this->belongsTo('App\Models\Room');
     }
-
-    public function player()
-    {
-        return $this->belongsTo('App\Models\Player');
-    }
 }
