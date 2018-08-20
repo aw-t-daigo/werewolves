@@ -15,8 +15,22 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('wolf-select-component', require('./components/WolfSelectComponent.vue'));
 
-const app = new Vue({
-    el: '#app'
+const select = new Vue({
+    el: '#select',
+    components: {
+        'wolf-select': require('./components/select/WolfSelect.vue'),
+    },
 });
+
+const modal = new Vue({
+    el: '#modal-button',
+    components: {
+        'punishment-modal': require('./components/PunishmentModal.vue'),
+    },
+    data() {
+        return {
+            showModal: false,
+        }
+    }
+})

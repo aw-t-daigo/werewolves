@@ -10,8 +10,11 @@
 </head>
 <body>
 
-<div>
-    <button id="dummy">処刑者選択</button>
+<div id="modal-button">
+    {{-- FIXME: Unexpected identifierって出るのを治す
+            でも動作するんだよなぁ……--}}
+    <button id="show-modal" v-on:click="showModal = true">処刑者選択</button>
+    <punishment-modal v-if="showModal" v-on:close="showModal = false"/>
 </div>
 
 <div id="container">
@@ -19,7 +22,7 @@
 </div>
 
 <div id="input-container">
-    <div id="app">
+    <div id="select">
         @yield('input-content')
     </div>
 </div>
@@ -28,3 +31,17 @@
 <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
+<script>
+    import PunishmentModal from "../../assets/js/components/PunishmentModal";
+
+    export default {
+        components: {PunishmentModal}
+    }
+</script>
+<script>
+    import PunishmentModal from "../../assets/js/components/PunishmentModal";
+
+    export default {
+        components: {PunishmentModal}
+    }
+</script>

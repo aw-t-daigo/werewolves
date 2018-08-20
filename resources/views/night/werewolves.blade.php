@@ -6,5 +6,5 @@
 
 @section('input-content')
     <p>おおかみ</p>
-        <wolf-select-component></wolf-select-component>
+        <wolf-select></wolf-select>
 @endsection

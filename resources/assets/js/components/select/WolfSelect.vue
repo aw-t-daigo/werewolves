@@ -10,7 +10,7 @@
 
     export default {
         components: {SelectLivingPlayer},
-        name: "WolfSelectComponent",
+        name: "WolfSelect",
         data() {
             return {
                 optionHeader: '襲撃先選択',
