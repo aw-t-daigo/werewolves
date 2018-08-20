@@ -1,9 +1,10 @@
 @extends('layouts.roleTemplate')
 
 @section('content')
-    <p>むらびと</p>
+    <p>おおかみ</p>
 @endsection
 
 @section('input-content')
-    <p>むらびと</p>
+    <p>おおかみ</p>
+        <wolf-select-component></wolf-select-component>
 @endsection

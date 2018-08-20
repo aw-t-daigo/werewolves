@@ -19,10 +19,12 @@
 </div>
 
 <div id="input-container">
-    @yield('input-content')
+    <div id="app">
+        @yield('input-content')
+    </div>
 </div>
 
-<script src="{{ mix('js/app.js') }}"></script>
 <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
+<script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

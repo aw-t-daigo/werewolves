@@ -8,6 +8,11 @@ use App\Services\RaidService;
 
 class WerewolfController extends Controller
 {
+    public function show()
+    {
+        return view('night.werewolves');
+    }
+
     public function raid(AbilityRequest $request, RaidService $service)
     {
         $roomId = $request->session()->get('roomId');

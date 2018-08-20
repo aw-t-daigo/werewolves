@@ -12,5 +12,6 @@
 */
 
 Route::post('/punishment', 'VillagerController@punishment');
-Route::post('/raid', 'WerewolfController@raid');
 Route::get('/live', 'PlayerController@getLivingPlayer');
+Route::post('/raid', 'WerewolfController@raid');
+
