@@ -16,21 +16,18 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
-const select = new Vue({
-    el: '#select',
+const input = new Vue({
+    el: '#input',
     components: {
         'wolf-select': require('./components/select/WolfSelect.vue'),
+        'wolf-chat-input': require('./components/chat/WolfChatInput.vue'),
     },
 });
 
 const modal = new Vue({
     el: '#modal-button',
     components: {
-        'punishment-modal': require('./components/PunishmentModal.vue'),
+        'modal-template': require('./components/ModalTemplate.vue'),
     },
-    data() {
-        return {
-            showModal: false,
-        }
-    }
-})
+
+});

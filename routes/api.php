@@ -14,4 +14,7 @@
 Route::post('/punishment', 'VillagerController@punishment');
 Route::get('/live', 'PlayerController@getLivingPlayer');
 Route::post('/raid', 'WerewolfController@raid');
+Route::prefix('chat')->group(function () {
+    Route::post('werewolves', 'WerewolfController@chat');
+});
 

@@ -8,21 +8,25 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class WerewolvesRecieved implements ShouldBroadcast
+class WerewolvesReceived implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $message;
+    public $playerId;
     private $roomId;
 
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param $message
+     * @param $playerId
+     * @param $roomId
      */
-    public function __construct($message, $roomId)
+    public function __construct($message, $playerId, $roomId)
     {
         $this->message = $message;
+        $this->playerId = $playerId;
         $this->roomId = $roomId;
     }
 
@@ -33,6 +37,6 @@ class WerewolvesRecieved implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('werewolves' . $this->roomId);
+        return new PrivateChannel('werewolves.' . $this->roomId);
     }
 }

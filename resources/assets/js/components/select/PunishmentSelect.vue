@@ -7,6 +7,7 @@
 
 <script>
     import SelectLivingPlayer from "./SelectLivingPlayer";
+    import axios from "axios";
 
     export default {
         name: "PunishmentSelect",

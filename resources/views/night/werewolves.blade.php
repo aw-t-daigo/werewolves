@@ -5,6 +5,9 @@
 @endsection
 
 @section('input-content')
-    <p>おおかみ</p>
+    <div id="input">
         <wolf-select></wolf-select>
+        <wolf-chat-input></wolf-chat-input>
+    </div>
 @endsection
+

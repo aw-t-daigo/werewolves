@@ -7,6 +7,7 @@
 
 <script>
     import SelectLivingPlayer from "./SelectLivingPlayer";
+    import axios from "axios";
 
     export default {
         components: {SelectLivingPlayer},
@@ -20,10 +21,12 @@
             raid() {
                 axios.post('http://werewolves/api/raid', {
                     player_id: this.targeted,
-                }).then(response => {
-                    console.log(response.data.success);
-                    // TODO: チャット画面と連携
-                })
+
+                }).then(
+                    (response) => {
+                        console.log(response.data.success);
+                        // TODO: チャット画面と連携
+                    })
             }
         }
     }
