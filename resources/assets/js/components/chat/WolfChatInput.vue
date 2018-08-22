@@ -1,7 +1,6 @@
 <template>
     <div class="wolf-chat">
-        <base-chat-input />
-        <button v-on:click="send">送信</button>
+        <base-chat-input v-on:send="send" />
     </div>
 </template>
 
@@ -12,14 +11,15 @@
     export default {
         name: "WolfChatInput",
         components: {BaseChatInput},
+        props: {
+            message: String,
+        },
         methods: {
-            send() {
+            send(message) {
                 axios.post('http://werewolves/api/chat/werewolves', {
-                    message: this.message,
+                    message: message,
                 }).then(response => {
-                    // ここが反応してる
-                    console.log(response.data);
-                    this.message = "";
+                    // this.message = "";
                 })
             }
         }

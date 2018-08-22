@@ -2,8 +2,8 @@
     <div class="text-area">
         <div class="message-box" v-for="message in messageList">
             <p>
-                <!--<small>{{message.playerId}}</small>-->
-                <span>{{message}}</span>
+                <small>{{message.playerName}} :</small>
+                <span>{{message.message}}</span>
             </p>
         </div>
     </div>
@@ -22,9 +22,8 @@
         },
         mounted() {
             const roomId = this.getRoomId();
-            Echo.private('werewolves.' + roomId)
+            Echo.channel('werewolves.' + roomId)
                 .listen('WerewolvesReceived', e => {
-                    console.log(e);
                     // TODO: messageの整形
                     this.messageList.push(e.message);
                 })

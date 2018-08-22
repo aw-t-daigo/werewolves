@@ -43,6 +43,7 @@ class RaidService
             ['targeted' => $target_player]
         );
 
+        // TODO: GMからのメッセージという体で書き直す
         return ['success' => true];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\WerewolvesReceived;
 use App\Http\Requests\AbilityRequest;
 use App\Http\Requests\ChatRequest;
+use App\Models\Player;
 use App\Services\RaidService;
 
 class WerewolfController extends Controller
@@ -39,15 +40,19 @@ class WerewolfController extends Controller
 
     /**
      * @param ChatRequest $request
+     * @param Player $player
      * @return \Illuminate\Http\JsonResponse
      */
-    public function chat(ChatRequest $request)
+    public function chat(ChatRequest $request, Player $player)
     {
         $roomId = $request->session()->get('roomId');
         $playerId = $request->session()->get('playerId');
-        $message = $request->message;
+        $message = [
+            'message' => $request->message,
+            'playerName' => $player->find($playerId)->player_name,
+        ];
 
-        event(new WerewolvesReceived($message, $playerId, $roomId));
+        event(new WerewolvesReceived($message, $roomId));
 
         return response()->json($message);
     }
