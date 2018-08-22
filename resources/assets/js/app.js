@@ -31,3 +31,10 @@ const modal = new Vue({
     },
 
 });
+
+const chat = new Vue({
+    el: '#chat',
+    components: {
+        'base-text-area': require('./components/chat/BaseTextArea.vue'),
+    }
+});

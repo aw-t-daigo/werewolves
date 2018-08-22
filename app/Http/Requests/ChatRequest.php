@@ -13,9 +13,9 @@ class ChatRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->session()->get('roomId') != $this->cookie('roomId')) {
-            return false;
-        }
+//        if ($this->session()->get('roomId') != $this->cookie('roomId')) {
+//            return false;
+//        }
         return true;
     }
 
@@ -27,7 +27,7 @@ class ChatRequest extends FormRequest
     public function rules()
     {
         return [
-            'message' => 'required',
+//            'message' => 'required',
         ];
     }
 }

@@ -11,6 +11,8 @@
     </select>
 </template>
 <script>
+    import axios from "axios";
+
     export default {
         name: 'select-living-player',
         props: {

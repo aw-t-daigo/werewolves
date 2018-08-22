@@ -17,7 +17,9 @@
                 axios.post('http://werewolves/api/chat/werewolves', {
                     message: this.message,
                 }).then(response => {
+                    // ここが反応してる
                     console.log(response.data);
+                    this.message = "";
                 })
             }
         }
