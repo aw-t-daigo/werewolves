@@ -4,11 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AbilityRequest extends FormRequest
+class ChatRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     * roomIdをセッションとクッキーで比較
+     *
      * @return bool
      */
     public function authorize()
@@ -27,7 +27,7 @@ class AbilityRequest extends FormRequest
     public function rules()
     {
         return [
-            'player_id' => 'required',
+            'message' => 'required',
         ];
     }
 }

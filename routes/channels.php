@@ -11,6 +11,11 @@
 |
 */
 
-Broadcast::channel('punishment.{roomId}', function ($roomId) {
-    return session()->get('roomId') == $roomId;
-});
+//Broadcast::channel('punishment.{roomId}', function ($roomId) {
+////    return session()->get('roomId') == $roomId;
+//    return true;
+//});
+//Broadcast::channel('werewolves.{roomId}', function ($roomId) {
+////    return session()->get('roomId') == $roomId;
+//    return true;
+//});

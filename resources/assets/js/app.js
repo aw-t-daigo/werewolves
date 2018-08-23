@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -17,6 +16,25 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
-const app = new Vue({
-    el: '#app'
+const input = new Vue({
+    el: '#input',
+    components: {
+        'wolf-select': require('./components/select/WolfSelect.vue'),
+        'wolf-chat-input': require('./components/chat/WolfChatInput.vue'),
+    },
+});
+
+const modal = new Vue({
+    el: '#modal-button',
+    components: {
+        'modal-template': require('./components/ModalTemplate.vue'),
+    },
+
+});
+
+const chat = new Vue({
+    el: '#chat',
+    components: {
+        'wolf-chat-text-area': require('./components/chat/WolfChatTextArea'),
+    }
 });

@@ -10,8 +10,8 @@
 </head>
 <body>
 
-<div>
-    <button id="dummy">処刑者選択</button>
+<div id="modal-button">
+    <modal-template></modal-template>
 </div>
 
 <div id="container">
@@ -22,7 +22,7 @@
     @yield('input-content')
 </div>
 
-<script src="{{ mix('js/app.js') }}"></script>
 <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
+<script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

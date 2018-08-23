@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\PunishmentRecieved;
+use App\Events\PunishmentReceived;
 use App\Http\Requests\AbilityRequest;
 use App\Services\PunishmentService;
 
@@ -18,7 +18,7 @@ class VillagerController extends Controller
         $message = $service->punishment($request->player_id);
 
         // websocketに通知
-        event(new PunishmentRecieved($message, $request->cookie('roomId')));
+        event(new PunishmentReceived($message, $request->cookie('roomId')));
 
         return response()->json($message);
     }
