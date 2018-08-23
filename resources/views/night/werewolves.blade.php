@@ -3,7 +3,7 @@
 @section('content')
     <p>おおかみ</p>
     <div id="chat">
-        <base-text-area></base-text-area>
+        <wolf-chat-text-area></wolf-chat-text-area>
     </div>
 @endsection
 

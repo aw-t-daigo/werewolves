@@ -27,7 +27,7 @@ class AbilityRequest extends FormRequest
     public function rules()
     {
         return [
-            'player_id' => 'required|exists:player',
+            'player_id' => 'required',
         ];
     }
 }

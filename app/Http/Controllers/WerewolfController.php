@@ -26,14 +26,11 @@ class WerewolfController extends Controller
     public function raid(AbilityRequest $request, RaidService $service)
     {
         $roomId = $request->session()->get('roomId');
-        $playerId = $request->session()->get('playerId');
         $targetPlayer = $request->player_id;
 
         $message = $service->raid($roomId, $targetPlayer);
 
-        if ($message['success']) {
-            event(new WerewolvesReceived($message, $playerId, $roomId));
-        }
+        event(new WerewolvesReceived($message, $roomId));
 
         return response()->json($message);
     }

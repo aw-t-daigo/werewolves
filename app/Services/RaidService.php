@@ -34,8 +34,9 @@ class RaidService
      */
     public function raid($roomId, $target_player)
     {
+
         if ($this->player->find($target_player)->is_dead) {
-            return ['success' => false];
+            abort(400);
         }
 
         $this->roleStatus->updateOrCreate(
@@ -43,7 +44,12 @@ class RaidService
             ['targeted' => $target_player]
         );
 
+        $playerName = $this->player->find($target_player)->player_name;
+
         // TODO: GMからのメッセージという体で書き直す
-        return ['success' => true];
+        return [
+            'message' => $playerName.'を襲撃します',
+            'playerName' => 'GM',
+        ];
     }
 }

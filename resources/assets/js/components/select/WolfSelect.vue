@@ -1,7 +1,6 @@
 <template>
     <div class="wolf-select">
-        <select-living-player :option-header="optionHeader"/>
-        <button v-on:click="raid">決定</button>
+        <select-living-player v-on:api="raid" :option-header="optionHeader"/>
     </div>
 </template>
 
@@ -18,15 +17,14 @@
             }
         },
         methods: {
-            raid() {
+            raid(targeted) {
                 axios.post('http://werewolves/api/raid', {
-                    player_id: this.targeted,
+                    player_id: targeted,
 
-                }).then(
-                    (response) => {
-                        console.log(response.data.success);
-                        // TODO: チャット画面と連携
-                    })
+                }).then(response => {
+                    console.log(response.data);
+                    // TODO: チャット画面と連携
+                })
             }
         }
     }

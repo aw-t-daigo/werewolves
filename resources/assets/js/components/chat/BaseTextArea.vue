@@ -12,31 +12,8 @@
 <script>
     export default {
         name: "BaseTextArea",
-        // props: {
-        //     messageList: Array
-        // },
-        data() {
-            return {
-                messageList: [],
-            }
-        },
-        mounted() {
-            const roomId = this.getRoomId();
-            Echo.channel('werewolves.' + roomId)
-                .listen('WerewolvesReceived', e => {
-                    // TODO: messageの整形
-                    this.messageList.push(e.message);
-                })
-        },
-        methods: {
-            getRoomId() {
-                // TODO: cookieから何とかしてroomIdを取得する
-            //     const cookies = document.cookie.split('; ');
-            //     for (cookie of cookies) {
-            //
-            //     }
-                return 9;
-            }
+        props: {
+            messageList: Array,
         }
     }
 </script>

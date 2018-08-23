@@ -18,9 +18,7 @@
             send(message) {
                 axios.post('http://werewolves/api/chat/werewolves', {
                     message: message,
-                }).then(response => {
-                    // this.message = "";
-                })
+                });
             }
         }
     }
