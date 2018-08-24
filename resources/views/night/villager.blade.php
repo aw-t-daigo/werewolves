@@ -1,9 +1,11 @@
 @extends('layouts.roleTemplate')
 
 @section('content')
-    <p>むらびと</p>
+    <div id="chat">
+        <common-text-area></common-text-area>
+    </div>
 @endsection
 
 @section('input-content')
-    <p>むらびと</p>
+    {{-- TODO: メモ機能どうするよ --}}
 @endsection

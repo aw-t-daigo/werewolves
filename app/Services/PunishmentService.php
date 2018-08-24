@@ -8,7 +8,7 @@
 
 namespace App\Services;
 
-use App\Repositories\PlayerRepositoryInterface;
+use App\Models\Player;
 
 /**
  * Class PunishmentService
@@ -17,22 +17,33 @@ use App\Repositories\PlayerRepositoryInterface;
 class PunishmentService
 {
     protected $playerRepo;
+    protected $player;
 
-    public function __construct(PlayerRepositoryInterface $playerRepo)
+    public function __construct(Player $player)
     {
-        $this->playerRepo = $playerRepo;
+        $this->player = $player;
     }
 
     /**
      * プレイヤーの死亡処理とステータスの生成
-     * @param $id
+     * @param $targetPlayer
      * @return array
      */
-    public function punishment($id):array
+    public function punishment($targetPlayer):array
     {
-        $saved = $this->playerRepo->killPlayer($id);
-        return $saved ?
-            ['success' => true, 'medium' => $this->playerRepo->getPlayerName($id)] :
-            ['success' => false];
+        $saved = $this->player->find($targetPlayer)->fill(['is_dead' => 1])->save();
+        if (!$saved) {
+            abort(400);
+        }
+
+        $target = $this->player->find($targetPlayer)->player_name;
+        $wolfOrNot = $this->player->find($targetPlayer)->roleMst->is_wolf;
+        $wolfOrNot = $wolfOrNot ? '人狼' : '人間';
+
+        return [
+            'message' => $target.'は処刑されました。',
+            'playerName' => 'GM',
+            'medium' => $target.'は'.$wolfOrNot.'でした。'
+        ];
     }
 }

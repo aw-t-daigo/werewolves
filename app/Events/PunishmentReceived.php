@@ -2,8 +2,8 @@
 
 namespace App\Events;
 
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
@@ -19,7 +19,7 @@ class PunishmentReceived implements ShouldBroadcast
      * Create a new event instance.
      *
      * @param array $message
-     * @return void
+     * @param $roomId
      */
     public function __construct(array $message, $roomId)
     {
@@ -30,21 +30,12 @@ class PunishmentReceived implements ShouldBroadcast
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return \Illuminate\Broadcasting\Channel|array
+     * @return Channel
      */
     public function broadcastOn()
     {
         // 渡すチャンネルはプライベート
         // roomIdでチェックとか必要かなぁ
-        return new PrivateChannel('punishment.'.$this->roomId);
-    }
-
-    /**
-     * message['success']がtrueのときのみブロードキャスト
-     * @return mixed
-     */
-    public function broadcastWhen()
-    {
-        return $this->message['success'];
+        return new Channel('werewolves.' . $this->roomId);
     }
 }
