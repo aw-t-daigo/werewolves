@@ -21,6 +21,7 @@ const input = new Vue({
     components: {
         'wolf-select': require('./components/select/WolfSelect.vue'),
         'wolf-chat-input': require('./components/chat/WolfChatInput.vue'),
+        'seer-select': require('./components/select/SeerSelect.vue'),
     },
 });
 
@@ -37,5 +38,6 @@ const chat = new Vue({
     components: {
         'wolf-chat-text-area': require('./components/chat/WolfChatTextArea'),
         'common-text-area': require('./components/chat/CommonTextArea.vue'),
+        'seer-text-area': require('./components/chat/SeerTextArea.vue'),
     }
 });
