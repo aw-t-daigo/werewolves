@@ -4,15 +4,14 @@
 
 <script>
     import BaseTextArea from "./BaseTextArea";
-    import axios from 'axios';
+    import axios from "axios";
 
     export default {
-        name: "WolfChatTextArea",
+        name: "CommonTextArea",
         components: {BaseTextArea},
         data() {
             return {
                 messageList: [],
-                roomId: null,
             }
         },
         mounted() {
@@ -26,13 +25,11 @@
                     });
             },
             connect(roomId) {
-                this.roomId = roomId;
-                Echo.channel('werewolves.' + this.roomId)
-                    .listen('WerewolvesReceived', e => {
+                // this.roomId = roomId;
+                Echo.channel('werewolves.' + roomId)
+                    .listen('PunishmentReceived', e => {
                         this.messageList.push(e.message);
-                    }).listen('PunishmentReceived', e => {
-                    this.messageList.push(e.message);
-                });
+                    });
             }
         }
     }

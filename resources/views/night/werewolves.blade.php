@@ -1,7 +1,6 @@
 @extends('layouts.roleTemplate')
 
 @section('content')
-    <p>おおかみ</p>
     <div id="chat">
         <wolf-chat-text-area></wolf-chat-text-area>
     </div>

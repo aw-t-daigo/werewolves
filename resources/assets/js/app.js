@@ -36,5 +36,6 @@ const chat = new Vue({
     el: '#chat',
     components: {
         'wolf-chat-text-area': require('./components/chat/WolfChatTextArea'),
+        'common-text-area': require('./components/chat/CommonTextArea.vue'),
     }
 });

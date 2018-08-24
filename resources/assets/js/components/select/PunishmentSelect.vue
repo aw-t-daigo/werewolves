@@ -20,9 +20,7 @@
             punishment(targeted) {
                 axios.post('http://werewolves/api/punishment', {
                     player_id: targeted,
-                }).then(response => {
-                    console.log(response);
-                })
+                });
             }
         }
     }

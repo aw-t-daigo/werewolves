@@ -31,7 +31,7 @@ class PunishmentService
      */
     public function punishment($targetPlayer):array
     {
-        $saved = $this->player->find($targetPlayer)->fill(['is_dead', true])->save();
+        $saved = $this->player->find($targetPlayer)->fill(['is_dead' => 1])->save();
         if (!$saved) {
             abort(400);
         }

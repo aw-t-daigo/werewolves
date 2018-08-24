@@ -20,6 +20,8 @@ class VillagerController extends Controller
         // websocketに通知
         event(new PunishmentReceived($message, $request->session()->get('roomId')));
 
+        // TODO: ゲーム終了確認兼夜操作リセット処理のサービスを作る
+
         return response()->json($message);
     }
 }
