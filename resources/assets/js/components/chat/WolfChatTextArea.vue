@@ -29,9 +29,12 @@
                 this.roomId = roomId;
                 Echo.channel('werewolves.' + this.roomId)
                     .listen('WerewolvesReceived', e => {
-                        // TODO: 全体チャンネル追加
+                        console.log(e);
                         this.messageList.push(e.message);
-                    });
+                    }).listen('PunishmentReceived', e => {
+                    console.log(e);
+                    this.messageList.push(e.message);
+                });
             }
         }
     }

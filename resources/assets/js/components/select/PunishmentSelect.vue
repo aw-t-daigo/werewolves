@@ -1,7 +1,6 @@
 <template>
     <div class="punish-select">
-        <select-living-player :option-header="optionHeader"/>
-        <button v-on:click="punishment">決定</button>
+        <select-living-player v-on:api="punishment" :option-header="optionHeader"/>
     </div>
 </template>
 
@@ -18,12 +17,11 @@
             }
         },
         methods: {
-            punishment() {
+            punishment(targeted) {
                 axios.post('http://werewolves/api/punishment', {
-                    player_id: this.targeted,
+                    player_id: targeted,
                 }).then(response => {
-                    console.log(response.data);
-                    // TODO: チャット連携
+                    console.log(response);
                 })
             }
         }

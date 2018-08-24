@@ -46,7 +46,6 @@ class RaidService
 
         $playerName = $this->player->find($target_player)->player_name;
 
-        // TODO: GMからのメッセージという体で書き直す
         return [
             'message' => $playerName.'を襲撃します',
             'playerName' => 'GM',

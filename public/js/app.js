@@ -48795,10 +48795,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         raid: function raid(targeted) {
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('http://werewolves/api/raid', {
                 player_id: targeted
-
             }).then(function (response) {
                 console.log(response.data);
-                // TODO: チャット画面と連携
             });
         }
     }
@@ -49648,7 +49646,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49669,7 +49667,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -49684,12 +49681,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        punishment: function punishment() {
+        punishment: function punishment(targeted) {
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('http://werewolves/api/punishment', {
-                player_id: this.targeted
+                player_id: targeted
             }).then(function (response) {
-                console.log(response.data);
-                // TODO: チャット連携
+                console.log(response);
             });
         }
     }
@@ -49708,10 +49704,9 @@ var render = function() {
     { staticClass: "punish-select" },
     [
       _c("select-living-player", {
-        attrs: { "option-header": _vm.optionHeader }
-      }),
-      _vm._v(" "),
-      _c("button", { on: { click: _vm.punishment } }, [_vm._v("決定")])
+        attrs: { "option-header": _vm.optionHeader },
+        on: { api: _vm.punishment }
+      })
     ],
     1
   )
@@ -49912,7 +49907,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49988,7 +49983,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             this.roomId = roomId;
             Echo.channel('werewolves.' + this.roomId).listen('WerewolvesReceived', function (e) {
-                // TODO: 全体チャンネル追加
+                console.log(e);
+                _this2.messageList.push(e.message);
+            }).listen('PunishmentReceived', function (e) {
+                console.log(e);
                 _this2.messageList.push(e.message);
             });
         }

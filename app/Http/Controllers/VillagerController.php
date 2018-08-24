@@ -18,7 +18,7 @@ class VillagerController extends Controller
         $message = $service->punishment($request->player_id);
 
         // websocketに通知
-        event(new PunishmentReceived($message, $request->cookie('roomId')));
+        event(new PunishmentReceived($message, $request->session()->get('roomId')));
 
         return response()->json($message);
     }
