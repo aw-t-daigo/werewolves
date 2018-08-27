@@ -45,6 +45,7 @@ class Kernel extends HttpKernel
 //            'usable',
             'throttle:60,1',
             'bindings',
+            'completed',
         ],
     ];
 
@@ -65,5 +66,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'usable' => \App\Http\Middleware\CheckRoomId::class,
+        'completed' => \App\Http\Middleware\CheckComplete::class,
     ];
 }
