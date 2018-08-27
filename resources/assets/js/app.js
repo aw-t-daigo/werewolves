@@ -39,5 +39,6 @@ const chat = new Vue({
         'wolf-chat-text-area': require('./components/chat/WolfChatTextArea'),
         'common-text-area': require('./components/chat/CommonTextArea.vue'),
         'seer-text-area': require('./components/chat/SeerTextArea.vue'),
+        'medium-text-area': require('./components/chat/MediumTextArea.vue'),
     }
 });
