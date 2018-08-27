@@ -22,6 +22,7 @@ const input = new Vue({
         'wolf-select': require('./components/select/WolfSelect.vue'),
         'wolf-chat-input': require('./components/chat/WolfChatInput.vue'),
         'seer-select': require('./components/select/SeerSelect.vue'),
+        'hunter-select': require('./components/select/HunterSelect.vue'),
     },
 });
 
