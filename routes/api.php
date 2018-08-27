@@ -18,6 +18,7 @@ Route::post('/seer', 'SeerController@seer');
 Route::post('/guard', 'HunterController@guard');
 Route::prefix('chat')->group(function () {
     Route::post('werewolves', 'WerewolfController@chat');
+    Route::post('sharer', 'SharerController@chat');
 });
 
 Route::get('/room-id', function () {
