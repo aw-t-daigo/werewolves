@@ -12,10 +12,14 @@
 */
 
 Route::post('/punishment', 'VillagerController@punishment');
+
+Route::middleware(['completed'])->group(function () {
+    Route::post('/raid', 'WerewolfController@raid');
+    Route::post('/seer', 'SeerController@seer');
+    Route::post('/guard', 'HunterController@guard');
+});
+
 Route::get('/live', 'PlayerController@getLivingPlayer');
-Route::post('/raid', 'WerewolfController@raid');
-Route::post('/seer', 'SeerController@seer');
-Route::post('/guard', 'HunterController@guard');
 Route::prefix('chat')->group(function () {
     Route::post('werewolves', 'WerewolfController@chat');
     Route::post('sharer', 'SharerController@chat');

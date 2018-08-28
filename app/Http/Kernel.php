@@ -45,7 +45,6 @@ class Kernel extends HttpKernel
 //            'usable',
             'throttle:60,1',
             'bindings',
-            'completed',
         ],
     ];
 

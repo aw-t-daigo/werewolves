@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Events\PunishmentReceived;
 use App\Models\Player;
 use App\Models\RoleStatus;
 use Closure;
@@ -21,6 +22,7 @@ class CheckComplete
      * @param $request
      * @param Closure $next
      * @return mixed
+     * @throws \Exception
      */
     public function handle($request, Closure $next)
     {
@@ -43,20 +45,28 @@ class CheckComplete
 
         // 夜操作終了処理
         if ($living->count() == $targeted->count()) {
-            $wolfTarget = $targeted->where('role_id', 2)->get('targeted');
-            $hunterTarget = $targeted->where('role_id', 6)->get('targeted');
+            $wolfTarget = $targeted->where('role_id', 2)->first();
+            $hunterTarget = $targeted->where('role_id', 6)->first();
 
-            if ($wolfTarget == $hunterTarget) {
-                $this->player->find($wolfTarget)->fill(['is_dead' => true])->save();
-                $message = ['raid' => $this->player->find($wolfTarget)->player_name];
+            if (!is_null($hunterTarget) && $wolfTarget->targeted === $hunterTarget->targeted) {
+                $message = [
+                    'message' => '朝になりました。犠牲者はいませんでした。',
+                    'playerName' => 'GM',
+                ];
             } else {
-                $message = ['raid' => null];
+                $this->player->find($wolfTarget->targeted)->fill(['is_dead' => 1])->save();
+                $playerName = $this->player->find($wolfTarget->targeted)->player_name;
+                $message = [
+                    'message' => '朝になりました。' . $playerName . 'は無残な姿になって発見されました。',
+                    'playerName' => 'GM',
+                ];
+
             }
 
             $this->roleStatus->where('room_id', $roomId)->delete();
 
-            // TODO: 全体向け通知チャンネルへmessage送信
-//            event();
+            // 全体向け通知チャンネルへmessage送信
+            event(new PunishmentReceived($message, $roomId));
         }
 
         return $resp;
