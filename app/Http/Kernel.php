@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'usable' => \App\Http\Middleware\CheckRoomId::class,
         'completed' => \App\Http\Middleware\CheckComplete::class,
+        'gameover' => \App\Http\Middleware\CheckGameOver::class,
     ];
 }

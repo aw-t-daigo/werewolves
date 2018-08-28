@@ -11,7 +11,8 @@
 |
 */
 
-Route::post('/punishment', 'VillagerController@punishment');
+Route::post('/punishment', 'VillagerController@punishment')
+    ->middleware('gameover');
 
 Route::middleware(['completed'])->group(function () {
     Route::post('/raid', 'WerewolfController@raid');
