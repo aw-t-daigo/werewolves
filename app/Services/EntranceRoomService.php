@@ -10,20 +10,14 @@ namespace App\Services;
 
 
 use App\Models\Player;
-use App\Models\RoleMst;
-use App\Models\RoleStatus;
 
 class EntranceRoomService
 {
     protected $player;
-    protected $roleMst;
-    protected $roleStatus;
 
-    public function __construct(Player $player, RoleMst $roleMst, RoleStatus $roleStatus)
+    public function __construct(Player $player)
     {
         $this->player = $player;
-        $this->roleMst = $roleMst;
-        $this->roleStatus = $roleStatus;
     }
 
     /**

@@ -34,7 +34,6 @@ class EntranceRoomController extends Controller
         $request->session()->regenerate();
         $request->session()->put('roomId', $player->room_id);
         $request->session()->put('playerId', $player->player_id);
-        $request->session()->put('roleId', $player->role_id);
 
         $roomIdCookie = cookie('roomId', $player->room_id);
 
