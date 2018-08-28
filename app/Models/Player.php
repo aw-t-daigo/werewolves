@@ -44,7 +44,7 @@ class Player extends Model
      */
     public function roleMst()
     {
-        return $this->belongsTo('App\Models\RoleMst', 'role_id');
+        return $this->belongsTo('App\Models\RoleMst', 'role_id', 'role_id');
     }
 
     public function roleStatus()
