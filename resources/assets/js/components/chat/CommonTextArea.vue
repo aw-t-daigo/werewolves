@@ -25,7 +25,6 @@
                     });
             },
             connect(roomId) {
-                // this.roomId = roomId;
                 Echo.channel('werewolves.' + roomId)
                     .listen('PunishmentReceived', e => {
                         this.messageList.push(e.message);

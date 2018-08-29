@@ -34,8 +34,6 @@ class PunishmentReceived implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        // 渡すチャンネルはプライベート
-        // roomIdでチェックとか必要かなぁ
         return new Channel('werewolves.' . $this->roomId);
     }
 }

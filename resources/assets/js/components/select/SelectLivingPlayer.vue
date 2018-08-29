@@ -3,7 +3,7 @@
         <select name="raid_target" v-model="targeted">
             <option disabled value="">{{optionHeader}}</option>
             <option
-                v-for="player in players"
+                v-for="player in state.players"
                 :key="player.player_id"
                 v-bind:value="player.player_id"
             >
@@ -14,7 +14,7 @@
     </div>
 </template>
 <script>
-    import axios from "axios";
+    import store from "../../store.js";
 
     export default {
         name: 'select-living-player',
@@ -23,15 +23,12 @@
         },
         data() {
             return {
-                players: [],
+                state: store.state,
                 targeted: null
             }
         },
         mounted() {
-            axios.get('http://werewolves/api/live')
-                .then((response) => {
-                    this.players = response.data;
-                })
+            store.fetchLivingPlayer();
         },
     }
 </script>
