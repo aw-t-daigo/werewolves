@@ -7,5 +7,7 @@
 @endsection
 
 @section('input-content')
-    {{-- TODO: メモ機能どうするよ --}}
+    <div id="input">
+        <memo-input></memo-input>
+    </div>
 @endsection

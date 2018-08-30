@@ -24,6 +24,7 @@ const input = new Vue({
         'seer-select': require('./components/select/SeerSelect.vue'),
         'hunter-select': require('./components/select/HunterSelect.vue'),
         'sharer-chat-input': require('./components/chat/SharerChatInput.vue'),
+        'memo-input': require('./components/chat/MemoInput.vue'),
     },
 });
 
