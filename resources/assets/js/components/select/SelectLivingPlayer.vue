@@ -27,8 +27,5 @@
                 targeted: null
             }
         },
-        mounted() {
-            store.fetchLivingPlayer();
-        },
     }
 </script>

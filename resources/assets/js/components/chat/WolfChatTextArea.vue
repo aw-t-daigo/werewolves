@@ -15,17 +15,20 @@
             }
         },
         mounted() {
-            store.fetchRoomInfo().then(e => this.connect(e));
+            store.fetchRoomInfo()
+                .then(e => this.connect(e))
+                .then(() => store.startGame());
         },
         methods: {
-            connect(roomId) {
+            async connect(roomId) {
                 Echo.channel('werewolves.' + roomId)
                     .listen('WerewolvesReceived', e => {
                         store.pushMessageList(e.message)
                     })
                     .listen('PunishmentReceived', e => {
                         store.pushMessageList(e.message)
-                    })
+                        store.fetchLivingPlayer();
+                    });
             }
         }
     }

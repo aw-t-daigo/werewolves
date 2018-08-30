@@ -1,33 +1,30 @@
 <template>
-    <base-text-area :message-list="messageList"></base-text-area>
+    <base-text-area :message-list="state.messageList"></base-text-area>
 </template>
 
 <script>
     import BaseTextArea from "./BaseTextArea";
-    import axios from "axios";
+    import store from '../../store.js';
 
     export default {
         name: "CommonTextArea",
         components: {BaseTextArea},
         data() {
             return {
-                messageList: [],
+                state: store.state,
             }
         },
         mounted() {
-            this.getRoomId().then(e => this.connect(e));
+            store.fetchRoomInfo()
+                .then(e => this.connect(e))
+                .then(() => store.startGame());
         },
         methods: {
-            async getRoomId() {
-                return axios.get('http://werewolves/api/room-id')
-                    .then(resp => {
-                        return resp.data;
-                    });
-            },
-            connect(roomId) {
+            async connect(roomId) {
                 Echo.channel('werewolves.' + roomId)
                     .listen('PunishmentReceived', e => {
-                        this.messageList.push(e.message);
+                        store.pushMessageList(e.message);
+                        store.fetchLivingPlayer();
                     });
             }
         }

@@ -26,11 +26,6 @@ Route::prefix('chat')->group(function () {
     Route::post('sharer', 'SharerController@chat');
 });
 
-Route::get('/room-id', function (\App\Models\Room $room) {
-    $roomId = session()->get('roomId');
+Route::get('/room-id', 'PlayerController@getPlayerInfo');
 
-    return response()->json([
-        'roomId' => $roomId,
-        'playerNum' => $room->find($roomId)->player_num,
-    ]);
-});
+Route::post('/start', 'PlayerController@startGame');

@@ -4,12 +4,12 @@ const store = {
     state: {
         players: [],
         messageList: [],
-        playerNum: null,
+        canStart: false,
     },
     async fetchRoomInfo() {
         return axios.get('http://werewolves/api/room-id')
             .then(resp => {
-                this.playerNum = resp.data.playerNum;
+                this.state.canStart = resp.data.canStart;
                 return resp.data.roomId;
             })
     },
@@ -21,6 +21,11 @@ const store = {
     },
     pushMessageList(message) {
         this.state.messageList.push(message);
+    },
+    startGame() {
+        if (this.state.canStart) {
+            axios.post('http://werewolves/api/start');
+        }
     }
 };
 

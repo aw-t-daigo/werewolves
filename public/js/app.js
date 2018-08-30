@@ -486,16 +486,10 @@ function applyToTag (styleElement, obj) {
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(26);
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 
 
-var bind = __webpack_require__(12);
+var bind = __webpack_require__(13);
 var isBuffer = __webpack_require__(27);
 
 /*global toString:true*/
@@ -799,6 +793,12 @@ module.exports = {
 
 
 /***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(26);
+
+/***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
@@ -827,13 +827,6 @@ module.exports = g;
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(54);
-
-
-/***/ }),
-/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -877,6 +870,13 @@ if (false) {(function () {
 })()}
 
 module.exports = Component.exports
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(54);
 
 
 /***/ }),
@@ -937,7 +937,7 @@ module.exports = Component.exports
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__(4);
+var utils = __webpack_require__(3);
 var normalizeHeaderName = __webpack_require__(29);
 
 var DEFAULT_CONTENT_TYPE = {
@@ -954,10 +954,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(14);
+    adapter = __webpack_require__(15);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(14);
+    adapter = __webpack_require__(15);
   }
   return adapter;
 }
@@ -1032,10 +1032,77 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)))
 
 /***/ }),
 /* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+
+
+var store = {
+    state: {
+        players: [],
+        messageList: [],
+        canStart: false
+    },
+    fetchRoomInfo: function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            var _this = this;
+
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            return _context.abrupt('return', __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('http://werewolves/api/room-id').then(function (resp) {
+                                _this.state.canStart = resp.data.canStart;
+                                return resp.data.roomId;
+                            }));
+
+                        case 1:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, this);
+        }));
+
+        function fetchRoomInfo() {
+            return _ref.apply(this, arguments);
+        }
+
+        return fetchRoomInfo;
+    }(),
+    fetchLivingPlayer: function fetchLivingPlayer() {
+        var _this2 = this;
+
+        __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('http://werewolves/api/live').then(function (resp) {
+            _this2.state.players = resp.data;
+        });
+    },
+    pushMessageList: function pushMessageList(message) {
+        this.state.messageList.push(message);
+    },
+    startGame: function startGame() {
+        if (this.state.canStart) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('http://werewolves/api/start');
+        }
+    }
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (store);
+
+/***/ }),
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3564,7 +3631,7 @@ Popper.Defaults = Defaults;
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(5)))
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -13935,7 +14002,7 @@ return jQuery;
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13953,7 +14020,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -14143,18 +14210,18 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(4);
+var utils = __webpack_require__(3);
 var settle = __webpack_require__(30);
 var buildURL = __webpack_require__(32);
 var parseHeaders = __webpack_require__(33);
 var isURLSameOrigin = __webpack_require__(34);
-var createError = __webpack_require__(15);
+var createError = __webpack_require__(16);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(35);
 
 module.exports = function xhrAdapter(config) {
@@ -14330,7 +14397,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14355,7 +14422,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14367,7 +14434,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14391,68 +14458,6 @@ Cancel.prototype.__CANCEL__ = true;
 
 module.exports = Cancel;
 
-
-/***/ }),
-/* 18 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
-
-
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
-
-
-var store = {
-    state: {
-        players: [],
-        messageList: [],
-        playerNum: null
-    },
-    fetchRoomInfo: function () {
-        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-            var _this = this;
-
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-                while (1) {
-                    switch (_context.prev = _context.next) {
-                        case 0:
-                            return _context.abrupt('return', __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('http://werewolves/api/room-id').then(function (resp) {
-                                _this.playerNum = resp.data.playerNum;
-                                return resp.data.roomId;
-                            }));
-
-                        case 1:
-                        case 'end':
-                            return _context.stop();
-                    }
-                }
-            }, _callee, this);
-        }));
-
-        function fetchRoomInfo() {
-            return _ref.apply(this, arguments);
-        }
-
-        return fetchRoomInfo;
-    }(),
-    fetchLivingPlayer: function fetchLivingPlayer() {
-        var _this2 = this;
-
-        __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('http://werewolves/api/live').then(function (resp) {
-            _this2.state.players = resp.data;
-        });
-    },
-    pushMessageList: function pushMessageList(message) {
-        this.state.messageList.push(message);
-    }
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (store);
 
 /***/ }),
 /* 19 */
@@ -14575,7 +14580,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_laravel_echo__);
 
 window._ = __webpack_require__(23);
-window.Popper = __webpack_require__(10).default;
+window.Popper = __webpack_require__(11).default;
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -14584,7 +14589,7 @@ window.Popper = __webpack_require__(10).default;
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(11);
+  window.$ = window.jQuery = __webpack_require__(12);
 
   __webpack_require__(25);
 } catch (e) {}
@@ -14595,7 +14600,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(3);
+window.axios = __webpack_require__(4);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -31785,7 +31790,7 @@ module.exports = function(module) {
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__(11), __webpack_require__(10)) :
+   true ? factory(exports, __webpack_require__(12), __webpack_require__(11)) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'popper.js'], factory) :
   (factory((global.bootstrap = {}),global.jQuery,global.Popper));
 }(this, (function (exports,$,Popper) { 'use strict';
@@ -35732,8 +35737,8 @@ module.exports = function(module) {
 "use strict";
 
 
-var utils = __webpack_require__(4);
-var bind = __webpack_require__(12);
+var utils = __webpack_require__(3);
+var bind = __webpack_require__(13);
 var Axios = __webpack_require__(28);
 var defaults = __webpack_require__(9);
 
@@ -35768,9 +35773,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(17);
+axios.Cancel = __webpack_require__(18);
 axios.CancelToken = __webpack_require__(42);
-axios.isCancel = __webpack_require__(16);
+axios.isCancel = __webpack_require__(17);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -35819,7 +35824,7 @@ function isSlowBuffer (obj) {
 
 
 var defaults = __webpack_require__(9);
-var utils = __webpack_require__(4);
+var utils = __webpack_require__(3);
 var InterceptorManager = __webpack_require__(37);
 var dispatchRequest = __webpack_require__(38);
 
@@ -35904,7 +35909,7 @@ module.exports = Axios;
 "use strict";
 
 
-var utils = __webpack_require__(4);
+var utils = __webpack_require__(3);
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -35923,7 +35928,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(15);
+var createError = __webpack_require__(16);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -35984,7 +35989,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 "use strict";
 
 
-var utils = __webpack_require__(4);
+var utils = __webpack_require__(3);
 
 function encode(val) {
   return encodeURIComponent(val).
@@ -36057,7 +36062,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 "use strict";
 
 
-var utils = __webpack_require__(4);
+var utils = __webpack_require__(3);
 
 // Headers whose duplicates are ignored by node
 // c.f. https://nodejs.org/api/http.html#http_message_headers
@@ -36117,7 +36122,7 @@ module.exports = function parseHeaders(headers) {
 "use strict";
 
 
-var utils = __webpack_require__(4);
+var utils = __webpack_require__(3);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -36235,7 +36240,7 @@ module.exports = btoa;
 "use strict";
 
 
-var utils = __webpack_require__(4);
+var utils = __webpack_require__(3);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -36295,7 +36300,7 @@ module.exports = (
 "use strict";
 
 
-var utils = __webpack_require__(4);
+var utils = __webpack_require__(3);
 
 function InterceptorManager() {
   this.handlers = [];
@@ -36354,9 +36359,9 @@ module.exports = InterceptorManager;
 "use strict";
 
 
-var utils = __webpack_require__(4);
+var utils = __webpack_require__(3);
 var transformData = __webpack_require__(39);
-var isCancel = __webpack_require__(16);
+var isCancel = __webpack_require__(17);
 var defaults = __webpack_require__(9);
 var isAbsoluteURL = __webpack_require__(40);
 var combineURLs = __webpack_require__(41);
@@ -36447,7 +36452,7 @@ module.exports = function dispatchRequest(config) {
 "use strict";
 
 
-var utils = __webpack_require__(4);
+var utils = __webpack_require__(3);
 
 /**
  * Transform the data for a request or a response
@@ -36516,7 +36521,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(17);
+var Cancel = __webpack_require__(18);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -48772,7 +48777,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(13)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(14)))
 
 /***/ }),
 /* 48 */
@@ -48946,9 +48951,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 //
 //
@@ -48984,7 +48989,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store_js__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store_js__ = __webpack_require__(10);
 //
 //
 //
@@ -49013,9 +49018,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             state: __WEBPACK_IMPORTED_MODULE_0__store_js__["a" /* default */].state,
             targeted: null
         };
-    },
-    mounted: function mounted() {
-        __WEBPACK_IMPORTED_MODULE_0__store_js__["a" /* default */].fetchLivingPlayer();
     }
 });
 
@@ -50035,7 +50037,7 @@ module.exports = function listToStyles (parentId, list) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseChatInput__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseChatInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__BaseChatInput__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 //
 //
@@ -50297,9 +50299,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 //
 //
@@ -50445,7 +50447,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -50456,16 +50458,18 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_js__ = __webpack_require__(10);
 //
 //
 //
 //
 //
 //
+
 
 
 
@@ -50475,7 +50479,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: { SelectLivingPlayer: __WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer___default.a },
     data: function data() {
         return {
-            optionHeader: '護衛先選択'
+            optionHeader: '護衛先選択',
+            state: __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].state
         };
     },
 
@@ -50483,6 +50488,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         guard: function guard(targeted) {
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('http://werewolves/api/guard', {
                 player_id: targeted
+            }).then(function (e) {
+                __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].pushMessageList(e.data);
             });
         }
     }
@@ -50617,7 +50624,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseChatInput__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseChatInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__BaseChatInput__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 //
 //
@@ -51020,9 +51027,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 //
 //
@@ -51159,15 +51166,21 @@ var render = function() {
         [_vm._v("処刑者選択")]
       ),
       _vm._v(" "),
-      _vm.showModal
-        ? _c("punishment-modal", {
-            on: {
-              close: function($event) {
-                _vm.showModal = false
-              }
-            }
-          })
-        : _vm._e()
+      _c("punishment-modal", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.showModal,
+            expression: "showModal"
+          }
+        ],
+        on: {
+          close: function($event) {
+            _vm.showModal = false
+          }
+        }
+      })
     ],
     1
   )
@@ -51268,7 +51281,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -51279,9 +51292,15 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseTextArea__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseTextArea___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__BaseTextArea__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_js__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BaseTextArea__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BaseTextArea___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__BaseTextArea__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_js__ = __webpack_require__(10);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 //
 //
 //
@@ -51292,28 +51311,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "WolfChatTextArea",
-    components: { BaseTextArea: __WEBPACK_IMPORTED_MODULE_0__BaseTextArea___default.a },
+    components: { BaseTextArea: __WEBPACK_IMPORTED_MODULE_1__BaseTextArea___default.a },
     data: function data() {
         return {
-            state: __WEBPACK_IMPORTED_MODULE_1__store_js__["a" /* default */].state
+            state: __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].state
         };
     },
     mounted: function mounted() {
         var _this = this;
 
-        __WEBPACK_IMPORTED_MODULE_1__store_js__["a" /* default */].fetchRoomInfo().then(function (e) {
+        __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].fetchRoomInfo().then(function (e) {
             return _this.connect(e);
+        }).then(function () {
+            return __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].startGame();
         });
     },
 
     methods: {
-        connect: function connect(roomId) {
-            Echo.channel('werewolves.' + roomId).listen('WerewolvesReceived', function (e) {
-                __WEBPACK_IMPORTED_MODULE_1__store_js__["a" /* default */].pushMessageList(e.message);
-            }).listen('PunishmentReceived', function (e) {
-                __WEBPACK_IMPORTED_MODULE_1__store_js__["a" /* default */].pushMessageList(e.message);
-            });
-        }
+        connect: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(roomId) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                Echo.channel('werewolves.' + roomId).listen('WerewolvesReceived', function (e) {
+                                    __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].pushMessageList(e.message);
+                                }).listen('PunishmentReceived', function (e) {
+                                    __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].pushMessageList(e.message);
+                                    __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].fetchLivingPlayer();
+                                });
+
+                            case 1:
+                            case "end":
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function connect(_x) {
+                return _ref.apply(this, arguments);
+            }
+
+            return connect;
+        }()
     }
 });
 
@@ -51522,7 +51563,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -51533,12 +51574,11 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BaseTextArea__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BaseTextArea___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__BaseTextArea__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_js__ = __webpack_require__(10);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -51556,27 +51596,30 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     components: { BaseTextArea: __WEBPACK_IMPORTED_MODULE_1__BaseTextArea___default.a },
     data: function data() {
         return {
-            messageList: []
+            state: __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].state
         };
     },
     mounted: function mounted() {
         var _this = this;
 
-        this.getRoomId().then(function (e) {
+        __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].fetchRoomInfo().then(function (e) {
             return _this.connect(e);
+        }).then(function () {
+            return __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].startGame();
         });
     },
 
     methods: {
-        getRoomId: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+        connect: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(roomId) {
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                return _context.abrupt("return", __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('http://werewolves/api/room-id').then(function (resp) {
-                                    return resp.data;
-                                }));
+                                Echo.channel('werewolves.' + roomId).listen('PunishmentReceived', function (e) {
+                                    __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].pushMessageList(e.message);
+                                    __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].fetchLivingPlayer();
+                                });
 
                             case 1:
                             case "end":
@@ -51586,19 +51629,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee, this);
             }));
 
-            function getRoomId() {
+            function connect(_x) {
                 return _ref.apply(this, arguments);
             }
 
-            return getRoomId;
-        }(),
-        connect: function connect(roomId) {
-            var _this2 = this;
-
-            Echo.channel('werewolves.' + roomId).listen('PunishmentReceived', function (e) {
-                _this2.messageList.push(e.message);
-            });
-        }
+            return connect;
+        }()
     }
 });
 
@@ -51610,7 +51646,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("base-text-area", { attrs: { "message-list": _vm.messageList } })
+  return _c("base-text-area", {
+    attrs: { "message-list": _vm.state.messageList }
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -51708,7 +51746,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -51719,12 +51757,11 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BaseTextArea__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BaseTextArea___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__BaseTextArea__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_js__ = __webpack_require__(10);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -51742,27 +51779,32 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     components: { BaseTextArea: __WEBPACK_IMPORTED_MODULE_1__BaseTextArea___default.a },
     data: function data() {
         return {
-            messageList: []
+            state: __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].state
         };
     },
     mounted: function mounted() {
         var _this = this;
 
-        this.getRoomId().then(function (e) {
+        __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].fetchRoomInfo().then(function (e) {
             return _this.connect(e);
+        }).then(function () {
+            return __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].startGame();
         });
     },
 
     methods: {
-        getRoomId: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+        connect: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(roomId) {
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                return _context.abrupt("return", __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('http://werewolves/api/room-id').then(function (resp) {
-                                    return resp.data;
-                                }));
+                                Echo.channel('werewolves.' + roomId).listen('PunishmentReceived', function (e) {
+                                    __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].pushMessageList(e.message);
+                                    __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].fetchLivingPlayer();
+                                }).listen('SeerReceived', function (e) {
+                                    __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].pushMessageList(e.message);
+                                });
 
                             case 1:
                             case "end":
@@ -51772,22 +51814,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee, this);
             }));
 
-            function getRoomId() {
+            function connect(_x) {
                 return _ref.apply(this, arguments);
             }
 
-            return getRoomId;
-        }(),
-        connect: function connect(roomId) {
-            var _this2 = this;
-
-            // this.roomId = roomId;
-            Echo.channel('werewolves.' + roomId).listen('PunishmentReceived', function (e) {
-                _this2.messageList.push(e.message);
-            }).listen('SeerReceived', function (e) {
-                _this2.messageList.push(e.message);
-            });
-        }
+            return connect;
+        }()
     }
 });
 
@@ -51799,7 +51831,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("base-text-area", { attrs: { "message-list": _vm.messageList } })
+  return _c("base-text-area", {
+    attrs: { "message-list": _vm.state.messageList }
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -51897,7 +51931,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -51908,10 +51942,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_js__ = __webpack_require__(10);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -51935,27 +51968,30 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     name: "MediumTextArea",
     data: function data() {
         return {
-            messageList: []
+            state: __WEBPACK_IMPORTED_MODULE_1__store_js__["a" /* default */].state
         };
     },
     mounted: function mounted() {
         var _this = this;
 
-        this.getRoomId().then(function (e) {
+        __WEBPACK_IMPORTED_MODULE_1__store_js__["a" /* default */].fetchRoomInfo().then(function (e) {
             return _this.connect(e);
+        }).then(function () {
+            return __WEBPACK_IMPORTED_MODULE_1__store_js__["a" /* default */].startGame();
         });
     },
 
     methods: {
-        getRoomId: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+        connect: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(roomId) {
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                return _context.abrupt('return', __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('http://werewolves/api/room-id').then(function (resp) {
-                                    return resp.data;
-                                }));
+                                Echo.channel('werewolves.' + roomId).listen('PunishmentReceived', function (e) {
+                                    __WEBPACK_IMPORTED_MODULE_1__store_js__["a" /* default */].pushMessageList(e.message);
+                                    __WEBPACK_IMPORTED_MODULE_1__store_js__["a" /* default */].fetchLivingPlayer();
+                                });
 
                             case 1:
                             case 'end':
@@ -51965,19 +52001,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee, this);
             }));
 
-            function getRoomId() {
+            function connect(_x) {
                 return _ref.apply(this, arguments);
             }
 
-            return getRoomId;
-        }(),
-        connect: function connect(roomId) {
-            var _this2 = this;
-
-            Echo.channel('werewolves.' + roomId).listen('PunishmentReceived', function (e) {
-                _this2.messageList.push(e.message);
-            });
-        }
+            return connect;
+        }()
     }
 });
 
@@ -51992,7 +52021,7 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "text-area" },
-    _vm._l(_vm.messageList, function(message) {
+    _vm._l(_vm.state.messageList, function(message) {
       return _c("div", { staticClass: "message-box" }, [
         _c("p", [
           _c("small", [_vm._v(_vm._s(message.playerName) + " :")]),
@@ -52107,7 +52136,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -52118,12 +52147,11 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BaseTextArea__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BaseTextArea___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__BaseTextArea__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store__ = __webpack_require__(10);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -52141,27 +52169,32 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     components: { BaseTextArea: __WEBPACK_IMPORTED_MODULE_1__BaseTextArea___default.a },
     data: function data() {
         return {
-            messageList: []
+            state: __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].state
         };
     },
     mounted: function mounted() {
         var _this = this;
 
-        this.getRoomId().then(function (e) {
+        __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].fetchRoomInfo().then(function (e) {
             return _this.connect(e);
+        }).then(function () {
+            return __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].startGame();
         });
     },
 
     methods: {
-        getRoomId: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+        connect: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(roomId) {
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                return _context.abrupt("return", __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('http://werewolves/api/room-id').then(function (resp) {
-                                    return resp.data;
-                                }));
+                                Echo.channel('werewolves.' + roomId).listen('SharerReceived', function (e) {
+                                    __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].pushMessageList(e.message);
+                                }).listen('PunishmentReceived', function (e) {
+                                    __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].pushMessageList(e.message);
+                                    __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].fetchLivingPlayer();
+                                });
 
                             case 1:
                             case "end":
@@ -52171,21 +52204,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee, this);
             }));
 
-            function getRoomId() {
+            function connect(_x) {
                 return _ref.apply(this, arguments);
             }
 
-            return getRoomId;
-        }(),
-        connect: function connect(roomId) {
-            var _this2 = this;
-
-            Echo.channel('werewolves.' + roomId).listen('SharerReceived', function (e) {
-                _this2.messageList.push(e.message);
-            }).listen('PunishmentReceived', function (e) {
-                _this2.messageList.push(e.message);
-            });
-        }
+            return connect;
+        }()
     }
 });
 
@@ -52197,7 +52221,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("base-text-area", { attrs: { "message-list": _vm.messageList } })
+  return _c("base-text-area", {
+    attrs: { "message-list": _vm.state.messageList }
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
