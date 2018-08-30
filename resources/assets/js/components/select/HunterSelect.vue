@@ -7,6 +7,7 @@
 <script>
     import SelectLivingPlayer from "./SelectLivingPlayer";
     import axios from "axios";
+    import store from '../../store.js';
 
     export default {
         name: "HunterSelect",
@@ -14,6 +15,7 @@
         data() {
             return {
                 optionHeader: '護衛先選択',
+                state: store.state
             }
         },
         methods: {
@@ -21,6 +23,9 @@
                 axios.post('http://werewolves/api/guard', {
                     player_id: targeted,
                 })
+                    .then(e => {
+                        store.pushMessageList(e.data);
+                    });
             }
         }
     }

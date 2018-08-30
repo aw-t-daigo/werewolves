@@ -16,7 +16,6 @@ use App\Models\Player;
  */
 class PunishmentService
 {
-    protected $playerRepo;
     protected $player;
 
     public function __construct(Player $player)
@@ -29,8 +28,11 @@ class PunishmentService
      * @param $targetPlayer
      * @return array
      */
-    public function punishment($targetPlayer):array
+    public function punishment($targetPlayer): array
     {
+        if ($this->player->find($targetPlayer)->is_dead) {
+            abort(400);
+        }
         $saved = $this->player->find($targetPlayer)->fill(['is_dead' => 1])->save();
         if (!$saved) {
             abort(400);
@@ -41,9 +43,9 @@ class PunishmentService
         $wolfOrNot = $wolfOrNot ? '人狼' : '人間';
 
         return [
-            'message' => $target.'は処刑されました。',
+            'message' => '投票の結果、' . $target . 'は処刑されました。',
             'playerName' => 'GM',
-            'medium' => $target.'は'.$wolfOrNot.'でした。'
+            'medium' => $target . 'は' . $wolfOrNot . 'でした。'
         ];
     }
 }

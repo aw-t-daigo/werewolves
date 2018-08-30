@@ -1,7 +1,7 @@
 <template>
     <div class="modal">
         <button id="show-modal" v-on:click="showModal = true">処刑者選択</button>
-        <punishment-modal v-if="showModal" v-on:close="showModal = false"/>
+        <punishment-modal v-show="showModal" v-on:close="showModal = false"/>
     </div>
 </template>
 

@@ -4,6 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property mixed room_id
+ * @property mixed player_name
+ * @property mixed role
+ */
 class EntranceRoomPost extends FormRequest
 {
     /**

@@ -8,7 +8,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class PunishmentReceived implements ShouldBroadcast
+class GameStartEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -16,12 +16,11 @@ class PunishmentReceived implements ShouldBroadcast
     private $roomId;
 
     /**
-     * Create a new event instance.
-     *
-     * @param array $message
+     * GameStartEvent constructor.
+     * @param $message
      * @param $roomId
      */
-    public function __construct(array $message, $roomId)
+    public function __construct($message, $roomId)
     {
         $this->message = $message;
         $this->roomId = $roomId;
@@ -30,7 +29,7 @@ class PunishmentReceived implements ShouldBroadcast
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return Channel
+     * @return \Illuminate\Broadcasting\Channel|array
      */
     public function broadcastOn()
     {

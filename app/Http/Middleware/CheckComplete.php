@@ -65,7 +65,6 @@ class CheckComplete
 
             $this->roleStatus->where('room_id', $roomId)->delete();
 
-            // 全体向け通知チャンネルへmessage送信
             event(new PunishmentReceived($message, $roomId));
         }
 

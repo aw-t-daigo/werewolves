@@ -1,9 +1,9 @@
 <template>
     <div class="text-area">
-        <div class="message-box" v-for="message in messageList">
+        <div class="message-box" v-for="message in state.messageList">
             <p>
                 <small>{{message.playerName}} :</small>
-                <span>{{message.message}}</span><br />
+                <span>{{message.message}}</span><br/>
                 <span v-if="message.medium"><small>GM : </small>{{message.medium}}</span>
             </p>
         </div>
@@ -11,29 +11,26 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    import store from '../../store.js';
 
     export default {
         name: "MediumTextArea",
         data() {
             return {
-                messageList: [],
+                state: store.state,
             }
         },
         mounted() {
-            this.getRoomId().then(e => this.connect(e));
+            store.fetchRoomInfo()
+                .then(e => this.connect(e))
+                .then(() => store.startGame());
         },
         methods: {
-            async getRoomId() {
-                return axios.get('http://werewolves/api/room-id')
-                    .then(resp => {
-                        return resp.data;
-                    });
-            },
-            connect(roomId) {
+            async connect(roomId) {
                 Echo.channel('werewolves.' + roomId)
                     .listen('PunishmentReceived', e => {
-                        this.messageList.push(e.message);
+                        store.pushMessageList(e.message);
+                        store.fetchLivingPlayer();
                     });
             }
         }

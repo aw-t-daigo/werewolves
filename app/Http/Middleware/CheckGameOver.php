@@ -21,8 +21,8 @@ class CheckGameOver
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -49,11 +49,15 @@ class CheckGameOver
                 'playerName' => 'GM',
             ];
             event(new PunishmentReceived($message, $roomId));
-        }
-
-        if ($wolfCount == 0) {
+        } else if ($wolfCount == 0) {
             $message = [
                 'message' => '村人の勝ちです！',
+                'playerName' => 'GM',
+            ];
+            event(new PunishmentReceived($message, $roomId));
+        } else {
+            $message = [
+                'message' => '夜になりました。役職者は操作してください。',
                 'playerName' => 'GM',
             ];
             event(new PunishmentReceived($message, $roomId));
