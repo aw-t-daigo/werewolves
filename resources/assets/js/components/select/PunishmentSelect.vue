@@ -18,7 +18,7 @@
         },
         methods: {
             punishment(targeted) {
-                axios.post('http://werewolves/api/punishment', {
+                axios.post('../../api/punishment', {
                     player_id: targeted,
                 });
             }

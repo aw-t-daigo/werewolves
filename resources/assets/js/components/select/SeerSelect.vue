@@ -18,7 +18,7 @@
         },
         methods: {
             seer(targeted) {
-                axios.post('http://werewolves/api/seer', {
+                axios.post('../../api/seer', {
                     player_id: targeted,
                 });
             }

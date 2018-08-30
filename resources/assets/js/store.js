@@ -7,14 +7,14 @@ const store = {
         canStart: false,
     },
     async fetchRoomInfo() {
-        return axios.get('http://werewolves/api/room-id')
+        return axios.get('../../api/room-id')
             .then(resp => {
                 this.state.canStart = resp.data.canStart;
                 return resp.data.roomId;
             })
     },
     fetchLivingPlayer() {
-        axios.get('http://werewolves/api/live')
+        axios.get('../../api/live')
             .then(resp => {
                 this.state.players = resp.data;
             })
@@ -24,7 +24,7 @@ const store = {
     },
     startGame() {
         if (this.state.canStart) {
-            axios.post('http://werewolves/api/start');
+            axios.post('../../api/start');
         }
     }
 };

@@ -16,7 +16,7 @@
         },
         methods: {
             send(message) {
-                axios.post('http://werewolves/api/chat/werewolves', {
+                axios.post('../../api/chat/werewolves', {
                     message: message,
                 });
             }

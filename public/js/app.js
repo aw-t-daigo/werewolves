@@ -827,7 +827,7 @@ var store = {
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
-                            return _context.abrupt('return', __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('http://werewolves/api/room-id').then(function (resp) {
+                            return _context.abrupt('return', __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('../../api/room-id').then(function (resp) {
                                 _this.state.canStart = resp.data.canStart;
                                 return resp.data.roomId;
                             }));
@@ -849,7 +849,7 @@ var store = {
     fetchLivingPlayer: function fetchLivingPlayer() {
         var _this2 = this;
 
-        __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('http://werewolves/api/live').then(function (resp) {
+        __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('../../api/live').then(function (resp) {
             _this2.state.players = resp.data;
         });
     },
@@ -858,7 +858,7 @@ var store = {
     },
     startGame: function startGame() {
         if (this.state.canStart) {
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('http://werewolves/api/start');
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('../../api/start');
         }
     }
 };
@@ -48977,7 +48977,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         raid: function raid(targeted) {
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('http://werewolves/api/raid', {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('../../api/raid', {
                 player_id: targeted
             });
         }
@@ -50058,7 +50058,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         send: function send(message) {
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('http://werewolves/api/chat/werewolves', {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('../../api/chat/werewolves', {
                 message: message
             });
         }
@@ -50325,7 +50325,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         seer: function seer(targeted) {
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('http://werewolves/api/seer', {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('../../api/seer', {
                 player_id: targeted
             });
         }
@@ -50487,7 +50487,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         guard: function guard(targeted) {
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('http://werewolves/api/guard', {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('../../api/guard', {
                 player_id: targeted
             }).then(function (e) {
                 __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].pushMessageList(e.data);
@@ -50645,7 +50645,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         send: function send(message) {
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('http://werewolves/api/chat/sharer', {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('../../api/chat/sharer', {
                 message: message
             });
         }
@@ -51205,7 +51205,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         punishment: function punishment(targeted) {
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('http://werewolves/api/punishment', {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('../../api/punishment', {
                 player_id: targeted
             });
         }

@@ -18,7 +18,7 @@
         },
         methods: {
             raid(targeted) {
-                axios.post('http://werewolves/api/raid', {
+                axios.post('../../api/raid', {
                     player_id: targeted,
                 });
             }
