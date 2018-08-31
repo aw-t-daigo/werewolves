@@ -1,24 +1,26 @@
 <template>
-    <div class="wolf-chat">
-        <base-chat-input v-on:send="send"></base-chat-input>
+    <div class="common-memo">
+        <base-chat-input v-on:send="memo"></base-chat-input>
     </div>
 </template>
 
 <script>
     import BaseChatInput from "./BaseChatInput";
-    import axios from "axios";
+    import store from '../../store.js';
 
     export default {
-        name: "SharerChatInput",
+        name: "MemoInput",
         components: {BaseChatInput},
         props: {
             message: String,
         },
         methods: {
-            send(message) {
-                axios.post('../../api/chat/sharer', {
+            memo(message) {
+                const memo = {
                     message: message,
-                })
+                    playerName: 'MEMO',
+                };
+                store.pushMessageList(memo);
             }
         }
     }

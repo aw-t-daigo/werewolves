@@ -7,5 +7,7 @@
 @endsection
 
 @section('input-content')
-    <p>霊能者</p>
+    <div id="input">
+        <memo-input></memo-input>
+    </div>
 @endsection

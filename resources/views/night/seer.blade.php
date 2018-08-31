@@ -9,5 +9,6 @@
 @section('input-content')
     <div id="input">
         <seer-select></seer-select>
+        <memo-input></memo-input>
     </div>
 @endsection

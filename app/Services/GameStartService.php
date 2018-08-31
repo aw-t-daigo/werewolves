@@ -41,7 +41,7 @@ class GameStartService
         // 初日占い通知
         $players = $this->player->where('room_id', $roomId)->get();
         $randomVillager = $players->filter(function ($item) {
-            return !$item->roleMst->is_wolf;
+            return !$item->roleMst->is_wolf && $item->roleMst->role_id != 3;
         })->random();
 
         $seerMessage = [

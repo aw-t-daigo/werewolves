@@ -20,7 +20,7 @@
         },
         methods: {
             guard(targeted) {
-                axios.post('http://werewolves/api/guard', {
+                axios.post('../../api/guard', {
                     player_id: targeted,
                 })
                     .then(e => {
