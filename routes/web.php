@@ -34,7 +34,3 @@ Route::group(['middleware' => ['web']], function () {
         });
     });
 });
-
-// コード確認用コントローラ
-Route::get('/test', 'ApiTestController@test');
-
