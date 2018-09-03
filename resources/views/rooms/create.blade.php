@@ -25,7 +25,7 @@
             </div>
             <div class="row">
                 <div class="offset-8 col-4">
-                    <button class="btn btn-primary btn-lg" type="submit">作成</button>
+                    <button class="btn btn-primary btn-lg " type="submit">作成</button>
                 </div>
             </div>
         </div>
