@@ -10,8 +10,8 @@
 </head>
 <body>
 
-<div class="container mb-3">
-    <div class="row mt-3">
+<div class="container-fluid pb-3 mt-3">
+    <div class="row">
         <div class="col-sm-9">
             <header>
                 @section('mainTitle')
@@ -19,7 +19,7 @@
             </header>
         </div>
 
-        <div class="col-sm-3">
+        <div class="offset-sm-9 col-sm-3">
             <form action="/" method="get">
                 <button class="btn btn-sm" id="return-top-button" type="submit">トップへ戻る</button>
             </form>
@@ -27,7 +27,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container-fluid mt-5">
     @yield('content')
 </div>
 

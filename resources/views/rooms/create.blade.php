@@ -15,7 +15,7 @@
                     <div class="alert alert-danger" role="alert">{{ $error }}</div>
                 @endforeach
             @endif
-            <div class="mt-2">
+            <div class="">
                 <select name="player_num" class="form-control" id="select-player-num">
                     <option value="0">プレイヤー数</option>
                     @for ($i = Config::get('const.minPlayer'); $i <= Config::get('const.maxPlayer'); $i++)
@@ -25,7 +25,7 @@
             </div>
             <div class="row">
                 <div class="offset-8 col-4">
-                    <button class="btn btn-primary btn-lg " type="submit">作成</button>
+                    <button class="btn btn-primary btn-block " type="submit">作成</button>
                 </div>
             </div>
         </div>

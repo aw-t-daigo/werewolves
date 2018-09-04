@@ -31,7 +31,7 @@ class EntranceRoomPost extends FormRequest
         return [
             'room_id' => 'required|integer|exists:room',
             'player_name' => 'required|max: 10',
-            'role' => 'not_in: 0',
+            'role' => 'required|not_in: 0',
         ];
     }
 
@@ -43,7 +43,7 @@ class EntranceRoomPost extends FormRequest
     {
         return [
             'room_id.exists' => '存在しない部屋IDです',
-            'role.not_in' => '役職が選択されていません'
+            'role.not_in' => '役職が選択されていません',
         ];
     }
 }
