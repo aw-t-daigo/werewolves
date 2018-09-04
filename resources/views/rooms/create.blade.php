@@ -8,26 +8,23 @@
 
 @section('content')
     <form action="/create" id="create-room-form" method="post">
+        @csrf
         <div class="form-group">
-            @csrf
+            <label for="select-player-num">プレイヤー数</label>
+            <select name="player_num"
+                    class="form-control @if ($errors->any()) is-invalid @endif"
+                    id="select-player-num">
+                <option value="0">プレイヤー数</option>
+                @for ($i = Config::get('const.minPlayer'); $i <= Config::get('const.maxPlayer'); $i++)
+                    <option value="{{$i}}">{{$i}}人</option>
+                @endfor
+            </select>
             @if ($errors->any())
                 @foreach ($errors->all() as $error)
-                    <div class="alert alert-danger" role="alert">{{ $error }}</div>
+                    <div class="invalid-feedback">{{ $error }}</div>
                 @endforeach
             @endif
-            <div class="">
-                <select name="player_num" class="form-control" id="select-player-num">
-                    <option value="0">プレイヤー数</option>
-                    @for ($i = Config::get('const.minPlayer'); $i <= Config::get('const.maxPlayer'); $i++)
-                        <option value="{{$i}}">{{$i}}人</option>
-                    @endfor
-                </select>
-            </div>
-            <div class="row">
-                <div class="offset-8 col-4">
-                    <button class="btn btn-primary btn-block " type="submit">作成</button>
-                </div>
-            </div>
         </div>
+        <button class="btn btn-primary btn-block" type="submit">作成</button>
     </form>
 @endsection
