@@ -7,7 +7,5 @@
 @endsection
 
 @section('input-content')
-    <div id="input">
-        <memo-input></memo-input>
-    </div>
+    <memo-input></memo-input>
 @endsection

@@ -20,8 +20,6 @@ const input = new Vue({
     el: '#input',
     components: {
         'wolf-chat-input': require('./components/chat/WolfChatInput.vue'),
-        'seer-select': require('./components/select/SeerSelect.vue'),
-        'hunter-select': require('./components/select/HunterSelect.vue'),
         'sharer-chat-input': require('./components/chat/SharerChatInput.vue'),
         'memo-input': require('./components/chat/MemoInput.vue'),
     },
@@ -33,6 +31,7 @@ const modal = new Vue({
         'modal-template': require('./components/modal/ModalTemplate.vue'),
         'wolf-select-modal': require('./components/modal/WolfSelectModal.vue'),
         'seer-select-modal': require('./components/modal/SeerSelectModal.vue'),
+        'hunter-select-modal': require('./components/modal/HunterSelectModal.vue'),
     },
 
 });
