@@ -32,6 +32,7 @@ const modal = new Vue({
     components: {
         'modal-template': require('./components/modal/ModalTemplate.vue'),
         'wolf-select-modal': require('./components/modal/WolfSelectModal.vue'),
+        'seer-select-modal': require('./components/modal/SeerSelectModal.vue'),
     },
 
 });

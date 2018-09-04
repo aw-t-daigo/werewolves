@@ -1,8 +1,8 @@
 <template>
     <div class="_modal">
-        <button class="btn btn-primary" id="show-modal" v-on:click="showModal = true">襲撃先選択</button>
+        <button class="btn btn-primary" id="show-modal" v-on:click="showModal = true">{{ header }}</button>
         <punishment-modal v-show="showModal" v-on:close="showModal = false">
-            <h5 slot="header">襲撃先選択</h5>
+            <h5 slot="header">{{ header }}</h5>
             <wolf-select slot="body"></wolf-select>
         </punishment-modal>
     </div>
@@ -21,6 +21,7 @@
         data() {
             return {
                 showModal: false,
+                header: '襲撃先選択',
             }
         }
     }
