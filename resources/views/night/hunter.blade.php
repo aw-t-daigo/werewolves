@@ -1,5 +1,9 @@
 @extends('layouts.roleTemplate')
 
+@section('modals')
+    <button is="hunter-select-modal" class="pl-1"></button>
+@endsection
+
 @section('content')
     <div id="chat">
         <common-text-area></common-text-area>
@@ -7,8 +11,5 @@
 @endsection
 
 @section('input-content')
-    <div id="input">
-        <hunter-select></hunter-select>
-        <memo-input></memo-input>
-    </div>
+    <memo-input></memo-input>
 @endsection

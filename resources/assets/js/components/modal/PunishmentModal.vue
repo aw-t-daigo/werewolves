@@ -5,15 +5,17 @@
                 <div class="modal-container">
 
                     <div class="modal-header">
-                        <p>処刑者選択</p>
+                        <slot name="header">
+                        </slot>
                     </div>
 
                     <div class="modal-body">
-                        <punishment-select/>
+                        <slot name="body">
+                        </slot>
                     </div>
 
                     <div class="modal-footer">
-                        <button class="modal-default-button" v-on:click="$emit('close')">
+                        <button class="btn btn-secondary" v-on:click="$emit('close')">
                             戻る
                         </button>
                     </div>
@@ -24,16 +26,12 @@
 </template>
 
 <script>
-    import PunishmentSelect from "./select/PunishmentSelect";
-
     export default {
         name: "PunishmentModal",
-        components: {PunishmentSelect},
     }
 </script>
 
 <style scoped>
-     /*TODO: モーダル用のcssを考えておこうね*/
     .modal-mask {
         position: fixed;
         z-index: 9998;

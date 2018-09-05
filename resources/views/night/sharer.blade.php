@@ -7,7 +7,5 @@
 @endsection
 
 @section('input-content')
-    <div id="input">
-        <sharer-chat-input></sharer-chat-input>
-    </div>
+    <sharer-chat-input></sharer-chat-input>
 @endsection

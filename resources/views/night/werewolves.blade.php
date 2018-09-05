@@ -1,5 +1,9 @@
 @extends('layouts.roleTemplate')
 
+@section('modals')
+    <button is="wolf-select-modal" class="pl-1"></button>
+@endsection
+
 @section('content')
     <div id="chat">
         <wolf-chat-text-area></wolf-chat-text-area>
@@ -7,8 +11,5 @@
 @endsection
 
 @section('input-content')
-    <div id="input">
-        <wolf-select></wolf-select>
-        <wolf-chat-input></wolf-chat-input>
-    </div>
+    <wolf-chat-input></wolf-chat-input>
 @endsection

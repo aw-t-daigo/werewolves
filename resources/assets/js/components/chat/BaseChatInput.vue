@@ -1,7 +1,9 @@
 <template>
-    <div class="base-chat">
-        <input type="text" v-model="message">
-        <button v-on:click="send">送信</button>
+    <div class="input-group">
+        <input type="text" class="form-control" v-model="message">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" v-on:click="send">送信</button>
+        </span>
     </div>
 </template>
 

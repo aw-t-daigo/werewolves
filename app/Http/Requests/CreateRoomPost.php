@@ -34,7 +34,7 @@ class CreateRoomPost extends FormRequest
     public function messages()
     {
         return [
-            'player_num.between' => 'プレイヤー数を選択してください'
+            'player_num.between' => 'プレイヤー数は必須です'
         ];
     }
 }

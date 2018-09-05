@@ -104,9 +104,9 @@ return [
     */
 
     'attributes' => [
-        // TODO: viewのname属性と一致するよう日本語名を書き加える
         'player_num' => 'プレイヤー数',
         'player_name' => 'プレイヤー名',
+        'role' => '役職',
         'room_id' => '部屋ID',
     ],
 

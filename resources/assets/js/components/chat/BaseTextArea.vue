@@ -1,10 +1,10 @@
 <template>
     <div class="text-area">
         <div class="message-box" v-for="message in messageList">
-            <p>
+            <span>
                 <small>{{message.playerName}} :</small>
                 <span>{{message.message}}</span>
-            </p>
+            </span>
         </div>
     </div>
 </template>
