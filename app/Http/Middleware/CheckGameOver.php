@@ -9,6 +9,8 @@ use Closure;
 
 class CheckGameOver
 {
+    use GameOverTrait;
+
     private $player;
     private $roleMst;
 
@@ -30,26 +32,16 @@ class CheckGameOver
         $resp = $next($request);
         $roomId = session()->get('roomId');
 
-        $living = $this->player
-            ->where('room_id', $roomId)
-            ->where('is_dead', 0)->get();
-
-        $wolfCount = $living->filter(function ($item) {
-            return $item->roleMst->is_wolf;
-        })->count();
-
-        $villagerCount = $living->filter(function ($item) {
-            return !$item->roleMst->is_wolf;
-        })->count();
+        $this->setPlayerCounts($this->player, $roomId);
 
         // 人狼の勝ち
-        if ($wolfCount >= $villagerCount) {
+        if ($this->wolfCount >= $this->villagerCount) {
             $message = [
                 'message' => '人狼の勝ちです！',
                 'playerName' => 'GM',
             ];
             event(new PunishmentReceived($message, $roomId));
-        } else if ($wolfCount == 0) {
+        } else if ($this->wolfCount == 0) {
             $message = [
                 'message' => '村人の勝ちです！',
                 'playerName' => 'GM',

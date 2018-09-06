@@ -9,6 +9,8 @@ use Closure;
 
 class CheckComplete
 {
+    use GameOverTrait;
+
     private $player;
     private $roleStatus;
 
@@ -55,6 +57,7 @@ class CheckComplete
                 ];
             } else {
                 $this->player->find($wolfTarget->targeted)->fill(['is_dead' => 1])->save();
+
                 $playerName = $this->player->find($wolfTarget->targeted)->player_name;
                 $message = [
                     'message' => '朝になりました。' . $playerName . 'は無残な姿になって発見されました。',
@@ -66,6 +69,18 @@ class CheckComplete
             $this->roleStatus->where('room_id', $roomId)->delete();
 
             event(new PunishmentReceived($message, $roomId));
+
+            $this->setPlayerCounts($this->player, $roomId);
+
+            // 夜の行動でゲームが終了する可能性があるため、判定を入れる
+            if ($this->wolfCount >= $this->villagerCount) {
+                $message = [
+                    'message' => '人狼の勝ちです！',
+                    'playerName' => 'GM',
+                ];
+
+                event(new PunishmentReceived($message, $roomId));
+            }
         }
 
         return $resp;
