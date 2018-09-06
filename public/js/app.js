@@ -50667,7 +50667,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -50688,6 +50688,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -50697,14 +50700,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: { SelectLivingPlayer: __WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer___default.a },
     data: function data() {
         return {
-            optionHeader: '処刑者選択'
+            optionHeader: '処刑者選択',
+            isInvalid: ''
         };
     },
 
     methods: {
         punishment: function punishment(targeted) {
+            var _this = this;
+
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('../../api/punishment', {
                 player_id: targeted
+            }).then(function (resp) {
+                _this.isInvalid = '';
+            }).catch(function (error) {
+                _this.isInvalid = 'is-invalid';
             });
         }
     }
@@ -50736,13 +50746,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'select-living-player',
     props: {
-        optionHeader: String
+        optionHeader: String,
+        isInvalid: String
     },
     data: function data() {
         return {
@@ -50774,6 +50788,7 @@ var render = function() {
             }
           ],
           staticClass: "form-control",
+          class: _vm.isInvalid,
           attrs: { name: "raid_target" },
           on: {
             change: function($event) {
@@ -50826,6 +50841,10 @@ var render = function() {
           },
           [_vm._v("決定")]
         )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "invalid-feedback" }, [
+        _vm._v("\n            そのプレイヤーは選択できません\n        ")
       ])
     ])
   ])
@@ -50853,7 +50872,10 @@ var render = function() {
     { staticClass: "punish-select" },
     [
       _c("select-living-player", {
-        attrs: { "option-header": _vm.optionHeader },
+        attrs: {
+          "option-header": _vm.optionHeader,
+          "is-invalid": _vm.isInvalid
+        },
         on: { api: _vm.punishment }
       })
     ],
@@ -51128,6 +51150,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -51137,14 +51162,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     name: "WolfSelect",
     data: function data() {
         return {
-            optionHeader: '襲撃先選択'
+            optionHeader: '襲撃先選択',
+            isInvalid: ''
         };
     },
 
     methods: {
         raid: function raid(targeted) {
+            var _this = this;
+
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('../../api/raid', {
                 player_id: targeted
+            }).then(function (resp) {
+                _this.isInvalid = '';
+            }).catch(function (error) {
+                _this.isInvalid = 'is-invalid';
             });
         }
     }
@@ -51163,7 +51195,10 @@ var render = function() {
     { staticClass: "wolf-select" },
     [
       _c("select-living-player", {
-        attrs: { "option-header": _vm.optionHeader },
+        attrs: {
+          "option-header": _vm.optionHeader,
+          "is-invalid": _vm.isInvalid
+        },
         on: { api: _vm.raid }
       })
     ],
@@ -51458,7 +51493,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -51479,6 +51514,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -51488,14 +51526,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: { SelectLivingPlayer: __WEBPACK_IMPORTED_MODULE_0__SelectLivingPlayer___default.a },
     data: function data() {
         return {
-            optionHeader: '占い先選択'
+            optionHeader: '占い先選択',
+            isInvalid: ''
         };
     },
 
     methods: {
         seer: function seer(targeted) {
+            var _this = this;
+
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('../../api/seer', {
                 player_id: targeted
+            }).then(function (resp) {
+                _this.isInvalid = '';
+            }).catch(function (error) {
+                _this.isInvalid = 'is-invalid';
             });
         }
     }
@@ -51514,7 +51559,10 @@ var render = function() {
     { staticClass: "seer-select" },
     [
       _c("select-living-player", {
-        attrs: { "option-header": _vm.optionHeader },
+        attrs: {
+          "option-header": _vm.optionHeader,
+          "is-invalid": _vm.isInvalid
+        },
         on: { api: _vm.seer }
       })
     ],
@@ -51812,7 +51860,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -51834,6 +51882,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -51845,16 +51896,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             optionHeader: '護衛先選択',
+            isInvalid: '',
             state: __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].state
         };
     },
 
     methods: {
         guard: function guard(targeted) {
+            var _this = this;
+
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('../../api/guard', {
                 player_id: targeted
             }).then(function (e) {
                 __WEBPACK_IMPORTED_MODULE_2__store_js__["a" /* default */].pushMessageList(e.data);
+                _this.isInvalid = '';
+            }).catch(function (error) {
+                _this.isInvalid = 'is-invalid';
             });
         }
     }
@@ -51873,7 +51930,10 @@ var render = function() {
     { staticClass: "hunter-select" },
     [
       _c("select-living-player", {
-        attrs: { "option-header": _vm.optionHeader },
+        attrs: {
+          "option-header": _vm.optionHeader,
+          "is-invalid": _vm.isInvalid
+        },
         on: { api: _vm.guard }
       })
     ],

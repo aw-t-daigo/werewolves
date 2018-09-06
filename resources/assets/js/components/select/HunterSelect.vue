@@ -1,6 +1,9 @@
 <template>
     <div class="hunter-select">
-        <select-living-player v-on:api="guard" :option-header="optionHeader"></select-living-player>
+        <select-living-player v-on:api="guard"
+                              :option-header="optionHeader"
+                              :is-invalid="isInvalid"
+        />
     </div>
 </template>
 
@@ -15,6 +18,7 @@
         data() {
             return {
                 optionHeader: '護衛先選択',
+                isInvalid: '',
                 state: store.state
             }
         },
@@ -22,10 +26,12 @@
             guard(targeted) {
                 axios.post('../../api/guard', {
                     player_id: targeted,
-                })
-                    .then(e => {
-                        store.pushMessageList(e.data);
-                    });
+                }).then(e => {
+                    store.pushMessageList(e.data);
+                    this.isInvalid = '';
+                }).catch(error => {
+                    this.isInvalid = 'is-invalid';
+                });
             }
         }
     }

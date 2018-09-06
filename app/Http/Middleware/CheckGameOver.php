@@ -30,6 +30,12 @@ class CheckGameOver
     public function handle($request, Closure $next)
     {
         $resp = $next($request);
+
+        // セットされたステータスコードが200でなければ以降は処理しない
+        if ($resp->getStatusCode() !== 200) {
+            return $resp;
+        }
+
         $roomId = session()->get('roomId');
 
         $this->setPlayerCounts($this->player, $roomId);
