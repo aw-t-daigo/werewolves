@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\SeerReceived;
 use App\Http\Requests\AbilityRequest;
 use App\Services\SeerService;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class SeerController extends Controller
 {
@@ -26,7 +27,13 @@ class SeerController extends Controller
         $roomId = $request->session()->get('roomId');
         $targetPlayer = $request->player_id;
 
-        $message = $service->seer($roomId, $targetPlayer);
+        try {
+            $service->seer($roomId, $targetPlayer);
+        } catch (BadRequestHttpException $e) {
+            throw $e;
+        }
+
+        $message = $service->createMessage();
 
         event(new SeerReceived($message, $roomId));
 

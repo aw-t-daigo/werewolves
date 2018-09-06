@@ -17,21 +17,19 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
  * Class RaidService
  * @package App\Services
  */
-class RaidService
+class RaidService extends BaseRoleService
 {
-    protected $player;
-    protected $roleStatus;
+    const ROLE_ID = 2;
 
     public function __construct(Player $player, RoleStatus $roleStatus)
     {
-        $this->player = $player;
-        $this->roleStatus = $roleStatus;
+        parent::__construct($player, $roleStatus);
     }
 
     /**
      * @param $roomId
      * @param $target_player
-     * @return string
+     * @return bool
      * @throws BadRequestHttpException
      */
     public function raid($roomId, $target_player)
@@ -42,10 +40,23 @@ class RaidService
         }
 
         $this->roleStatus->updateOrCreate(
-            ['room_id' => $roomId, 'role_id' => 2],
+            ['room_id' => $roomId, 'role_id' => self::ROLE_ID],
             ['targeted' => $target_player]
         );
 
-        return $this->player->find($target_player)->player_name;
+        $this->playerName = $this->player->find($target_player)->player_name;
+
+        return true;
+    }
+
+    /**
+     * @return array
+     */
+    public function createMessage()
+    {
+        return [
+            'message' => $this->playerName . 'を襲撃します',
+            'playerName' => 'GM',
+        ];
     }
 }

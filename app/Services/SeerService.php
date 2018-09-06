@@ -11,40 +11,46 @@ namespace App\Services;
 
 use App\Models\Player;
 use App\Models\RoleStatus;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
-class SeerService
+class SeerService extends BaseRoleService
 {
-    protected $player;
-    protected $roleStatus;
+    const ROLE_ID = 3;
+    private $wolfOrNot;
 
     public function __construct(Player $player, RoleStatus $roleStatus)
     {
-        $this->player = $player;
-        $this->roleStatus = $roleStatus;
+        parent::__construct($player, $roleStatus);
     }
 
     /**
      * @param $roomId
      * @param $targetPlayer
-     * @return array
+     * @return bool
+     * @throws BadRequestHttpException
      */
     public function seer($roomId, $targetPlayer)
     {
         if ($this->player->find($targetPlayer)->is_dead) {
-            abort(400);
+            throw new BadRequestHttpException('対象のプレイヤーは既に死亡しています');
         }
 
         $this->roleStatus->updateOrCreate(
-            ['room_id' => $roomId, 'role_id' => 3],
+            ['room_id' => $roomId, 'role_id' => self::ROLE_ID],
             ['targeted' => $targetPlayer]
         );
 
-        $target = $this->player->find($targetPlayer)->player_name;
-        $wolfOrNot = $wolfOrNot = $this->player->find($targetPlayer)->roleMst->is_wolf;
-        $wolfOrNot = $wolfOrNot ? '人狼' : '人間';
+        $this->playerName = $this->player->find($targetPlayer)->player_name;
+        $isWolf = $wolfOrNot = $this->player->find($targetPlayer)->roleMst->is_wolf;
+        $this->wolfOrNot = $isWolf ? '人狼' : '人間';
 
+        return true;
+    }
+
+    public function createMessage()
+    {
         return [
-            'message' => $target.'は'.$wolfOrNot.'です。',
+            'message' => $this->playerName . 'は' . $this->wolfOrNot . 'です。',
             'playerName' => 'GM',
         ];
     }

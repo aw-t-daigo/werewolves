@@ -30,15 +30,12 @@ class WerewolfController extends Controller
         $targetPlayer = $request->player_id;
 
         try {
-            $playerName = $service->raid($roomId, $targetPlayer);
+            $service->raid($roomId, $targetPlayer);
         } catch (BadRequestHttpException $e) {
             throw $e;
         }
 
-        $message = [
-            'message' => $playerName . 'を襲撃します',
-            'playerName' => 'GM',
-        ];
+        $message = $service->createMessage();
 
         event(new WerewolvesReceived($message, $roomId));
 
