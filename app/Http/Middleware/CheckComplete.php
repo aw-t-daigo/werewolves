@@ -73,7 +73,7 @@ class CheckComplete
             $this->setPlayerCounts($this->player, $roomId);
 
             // 夜の行動でゲームが終了する可能性があるため、判定を入れる
-            if ($this->wolfCount >= $this->villagerCount) {
+            if ($this->isWolfWin()) {
                 $message = [
                     'message' => '人狼の勝ちです！',
                     'playerName' => 'GM',

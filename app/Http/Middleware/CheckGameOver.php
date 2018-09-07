@@ -41,13 +41,13 @@ class CheckGameOver
         $this->setPlayerCounts($this->player, $roomId);
 
         // 人狼の勝ち
-        if ($this->wolfCount >= $this->villagerCount) {
+        if ($this->isWolfWin()) {
             $message = [
                 'message' => '人狼の勝ちです！',
                 'playerName' => 'GM',
             ];
             event(new PunishmentReceived($message, $roomId));
-        } else if ($this->wolfCount == 0) {
+        } else if ($this->isVillagerWin()) {
             $message = [
                 'message' => '村人の勝ちです！',
                 'playerName' => 'GM',

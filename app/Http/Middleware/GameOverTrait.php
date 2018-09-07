@@ -33,4 +33,20 @@ trait GameOverTrait
             return !$item->roleMst->is_wolf;
         })->count();
     }
+
+    /**
+     * @return bool
+     */
+    public function isWolfWin()
+    {
+        return $this->wolfCount >= $this->villagerCount;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isVillagerWin()
+    {
+        return $this->wolfCount === 0;
+    }
 }
