@@ -7,6 +7,7 @@ use App\Http\Requests\AbilityRequest;
 use App\Http\Requests\ChatRequest;
 use App\Models\Player;
 use App\Services\RaidService;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class WerewolfController extends Controller
 {
@@ -28,7 +29,13 @@ class WerewolfController extends Controller
         $roomId = $request->session()->get('roomId');
         $targetPlayer = $request->player_id;
 
-        $message = $service->raid($roomId, $targetPlayer);
+        try {
+            $service->raid($roomId, $targetPlayer);
+        } catch (BadRequestHttpException $e) {
+            throw $e;
+        }
+
+        $message = $service->createMessage();
 
         event(new WerewolvesReceived($message, $roomId));
 

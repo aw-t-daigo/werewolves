@@ -11,43 +11,51 @@ namespace App\Services;
 
 use App\Models\Player;
 use App\Models\RoleStatus;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 /**
  * Class RaidService
  * @package App\Services
  */
-class RaidService
+class RaidService extends BaseRoleService
 {
-    protected $player;
-    protected $roleStatus;
+    const ROLE_ID = 2;
 
     public function __construct(Player $player, RoleStatus $roleStatus)
     {
-        $this->player = $player;
-        $this->roleStatus = $roleStatus;
+        parent::__construct($player, $roleStatus);
     }
 
     /**
      * @param $roomId
      * @param $target_player
-     * @return array
+     * @return bool
+     * @throws BadRequestHttpException
      */
     public function raid($roomId, $target_player)
     {
 
         if ($this->player->find($target_player)->is_dead) {
-            abort(400);
+            throw new BadRequestHttpException('対象のプレイヤーは既に死亡しています');
         }
 
         $this->roleStatus->updateOrCreate(
-            ['room_id' => $roomId, 'role_id' => 2],
+            ['room_id' => $roomId, 'role_id' => self::ROLE_ID],
             ['targeted' => $target_player]
         );
 
-        $playerName = $this->player->find($target_player)->player_name;
+        $this->playerName = $this->player->find($target_player)->player_name;
 
+        return true;
+    }
+
+    /**
+     * @return array
+     */
+    public function createMessage()
+    {
         return [
-            'message' => $playerName.'を襲撃します',
+            'message' => $this->playerName . 'を襲撃します',
             'playerName' => 'GM',
         ];
     }
