@@ -1,8 +1,8 @@
 <template>
     <div class="input-group">
-        <input type="text" class="form-control" v-model="message">
+        <input type="text" class="form-control form-control-lg" v-model="message">
         <span class="input-group-btn">
-            <button class="btn btn-primary" v-on:click="send">送信</button>
+            <button class="btn btn-primary btn-lg" v-on:click="send">送信</button>
         </span>
     </div>
 </template>
